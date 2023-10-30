@@ -20,8 +20,16 @@ int main(int argc, char *argv[])
     for (int i = 0, n = mo->propertyCount(); i < n; i++) {
         auto prop = mo->property(i);
         qInfo() << "property: " << prop.name() << ", value=" << prop.read(vc);
+        if (prop.name() == QString("volume")) {
+            prop.write(vc, QVariant(55.0));
+        }
     }
 
+    vc->connect(vc, &VolumeControl::destroyed, vc, [](QObject *ptr) {
+        qInfo() << "volume was destroyed "  << ptr;
+    });
+
+    delete vc;
+
     return 0;
-    //return a.exec();
 }
