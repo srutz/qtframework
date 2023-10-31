@@ -14,12 +14,17 @@
 
 #include "electionresult.h"
 
+using namespace Qt::StringLiterals;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    auto s0 = u"Hello there
+me again"_s;
+    auto sl = u"Bar Graph"_s;
 
     ui->splitter->setStretchFactor(0, 15);
     ui->splitter->setStretchFactor(1, 85);
