@@ -7,6 +7,7 @@
 #include <QBarSeries>
 #include <QStringList>
 #include <QChartView>
+#include <QLabel>
 #include <QBarCategoryAxis>
 #include <QValueAxis>
 
@@ -107,9 +108,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
-    auto chartView = new QChartView(chart);
+    auto chartView = new QChartView(chart, this);
     QVBoxLayout *layout = new QVBoxLayout(ui->rightWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    QLabel *label = new QLabel(this);
+    label->setAlignment(Qt::AlignCenter);
     layout->addWidget(chartView);
+    layout->addWidget(label);
 
     QObject::connect(series, &QAbstractBarSeries::clicked, series, [=](int index, QBarSet *set) {
         set->toggleSelection({index});
@@ -123,8 +128,9 @@ MainWindow::MainWindow(QWidget *parent)
 
         QString info = QString::asprintf("%ls, 2021=%.2f%%, 2017=%.2f%%", category.utf16(), percent2021, percent2017);
         qInfo() << info;
+        label->setText(info);
     });
-
+    label->setText("-");
 }
 
 MainWindow::~MainWindow()
