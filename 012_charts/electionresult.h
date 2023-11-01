@@ -19,6 +19,7 @@ struct ElectionResult
 
 
     ElectionResult();
+    double index(int);
 
     static ElectionResult fromJsonArray(QJsonArray array);
 };

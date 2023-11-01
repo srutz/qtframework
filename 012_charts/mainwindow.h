@@ -25,6 +25,7 @@ private:
 
     Ui::MainWindow *ui;
     QChart *chart;
+    QString m_area;
 
     QBarSeries* fillChart(const QString &area);
 };

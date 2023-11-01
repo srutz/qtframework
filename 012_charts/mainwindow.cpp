@@ -16,15 +16,13 @@
 
 using namespace Qt::StringLiterals;
 
+QStringList categories { "CDU/CSU", "SPD", "Grüne", "FDP", "Afd", "Die Linke", "Sonstige" };
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    auto s0 = u"Hello there
-me again"_s;
-    auto sl = u"Bar Graph"_s;
 
     ui->splitter->setStretchFactor(0, 15);
     ui->splitter->setStretchFactor(1, 85);
@@ -50,7 +48,7 @@ me again"_s;
     });
     ui->listView->setModel(listModel);
     ui->listView->setEditTriggers(QListView::NoEditTriggers);
-    connect(ui->listView, &QListView::clicked, [=](const QModelIndex &index) {
+    connect(ui->listView, &QListView::clicked, this, [=](const QModelIndex &index) {
         auto item = listModel->data(index);
         auto area = item.toString();
         auto series = this->fillChart(area);
@@ -93,7 +91,6 @@ me again"_s;
     chart->removeAllSeries();
     chart->addSeries(series);
 
-    QStringList categories { "CDU/CSU", "SPD", "Grüne", "FDP", "Afd", "Die Linke", "Sonstige" };
     auto axisX = new QBarCategoryAxis();
     axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
@@ -113,6 +110,21 @@ me again"_s;
     auto chartView = new QChartView(chart);
     QVBoxLayout *layout = new QVBoxLayout(ui->rightWidget);
     layout->addWidget(chartView);
+
+    QObject::connect(series, &QAbstractBarSeries::clicked, series, [=](int index, QBarSet *set) {
+        set->toggleSelection({index});
+        QString category = categories[index];
+        qInfo() << "selected " << category << ", set=" << set << ", index=" << index;
+        auto results2021 = electionMap->value(m_area + "/2021");
+        auto results2017 = electionMap->value(m_area + "/2017");
+
+        double percent2021 = results2021.index(index);
+        double percent2017 = results2017.index(index);
+
+        QString info = QString::asprintf("%ls, 2021=%.2f%%, 2017=%.2f%%", category.utf16(), percent2021, percent2017);
+        qInfo() << info;
+    });
+
 }
 
 MainWindow::~MainWindow()
@@ -122,20 +134,21 @@ MainWindow::~MainWindow()
 
 QBarSeries* MainWindow::fillChart(const QString &area)
 {
+    this->m_area = area;
     auto y2021 = new QBarSet("2021");
     auto y2017 = new QBarSet("2017");
 
     auto results2021 = electionMap->value(area + "/2021");
     auto results2017 = electionMap->value(area + "/2017");
 
-    *y2021  << results2021.cducsu
+    *y2021 << results2021.cducsu
            << results2021.spd
            << results2021.green
            << results2021.fdp
            << results2021.afd
            << results2021.left
            << results2021.misc;
-    *y2017  << results2017.cducsu
+    *y2017 << results2017.cducsu
            << results2017.spd
            << results2017.green
            << results2017.fdp

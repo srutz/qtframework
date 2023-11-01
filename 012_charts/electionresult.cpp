@@ -5,6 +5,20 @@ ElectionResult::ElectionResult()
 
 }
 
+double ElectionResult::index(int index) {
+    switch(index) {
+    case 0: return cducsu;
+    case 1: return spd;
+    case 2: return green;
+    case 3: return fdp;
+    case 4: return afd;
+    case 5: return left;
+    case 6: return misc;
+    }
+    return 0;
+}
+
+
 static double getGermanDouble(const QString &s) {
     QString c = s;
     c.replace(",", ".");
