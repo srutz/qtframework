@@ -23,6 +23,8 @@ private:
     void plotAxes(QPainter* painter);
     void plotFunction(QPainter* painter);
 
+    double formula(double x);
+
 };
 
 #endif // FUNCTIONPLOTTER_H

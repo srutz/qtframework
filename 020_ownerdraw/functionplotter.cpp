@@ -1,3 +1,4 @@
+#include <cmath>
 #include "functionplotter.h"
 
 FunctionPlotter::FunctionPlotter(QWidget *parent)
@@ -29,14 +30,12 @@ void FunctionPlotter::plotAxes(QPainter* painter)
     painter->drawLine(w/2, 0, w/2, h);
 
     // Skalenbeschriftung
-    for (int i = w/2 % int(scaleFactor); i < w; i += scaleFactor)
-    {
+    for (int i = w/2 % int(scaleFactor); i < w; i += scaleFactor) {
         painter->drawLine(i, h/2 - 5, i, h/2 + 5);
         painter->drawText(i, h/2 + 20, QString::number((i - w/2) / scaleFactor));
     }
 
-    for (int i = h/2 % int(scaleFactor); i < h; i += scaleFactor)
-    {
+    for (int i = h/2 % int(scaleFactor); i < h; i += scaleFactor) {
         painter->drawLine(w/2 - 5, i, w/2 + 5, i);
         painter->drawText(w/2 + 10, i, QString::number((h/2 - i) / scaleFactor));
     }
@@ -52,9 +51,8 @@ void FunctionPlotter::plotFunction(QPainter* painter)
     bool start = true;
 
     for (int i = 0; i < w; ++i) {
-        double x = (i - w/2) / scaleFactor;
-        double y = std::sin(x) * scaleFactor;
-
+        double x = (i - w / 2) / scaleFactor;
+        double y = formula(x) * scaleFactor;
         if (start) {
             path.moveTo(i, h/2 - y);
             start = false;
@@ -64,4 +62,9 @@ void FunctionPlotter::plotFunction(QPainter* painter)
     }
 
     painter->drawPath(path);
+}
+
+double FunctionPlotter::formula(double x)
+{
+    return 8 * std::sin(x);
 }
