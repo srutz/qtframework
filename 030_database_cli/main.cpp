@@ -4,6 +4,15 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
 
+/*
+
+create table users (id bigserial, email text, name text);
+insert into users(email,name) values ('harald.juhnke@de.de', 'Harald Juhnke');
+insert into users(email,name) values ('frank.sinatra@de.de', 'Frank Sinatra'),('dean.martin@usa.com', 'Dean Martin');
+insert into users(email,name) values ('hans.meiser@de.de', 'Hans Meiser');
+
+*/
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -24,30 +33,43 @@ int main(int argc, char *argv[])
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName("localhost");
-    db.setDatabaseName("template1");
+    db.setDatabaseName("db1");
     db.setUserName("sr");
     db.setPassword("abc");
     bool ok = db.open();
     qInfo() << "database connection status " << ok;
 
-    QString sql = "select relname, relpages, reltuples cnt from pg_class where relname ilike ? order by relpages desc limit 5";
     {
+        QString sql =
+        "insert into users(email,name) values (:email, :name)";
         QSqlQuery query;
         query.prepare(sql);
-        query.bindValue(0, QVariant("%\\_user\\_%"));
+        query.bindValue(":email", "willi.millowitsch@cologne.de");
+        query.bindValue(":name", "Willi Millowitsch");
+        if (query.exec()) {
+            qInfo().nospace() << "inserted #" << query.numRowsAffected() << " row(s)";
+        } else {
+            qDebug() << query.lastError().text();
+        }
+    }
+
+    {
+        QString sql =
+        "select email, name from users where email ilike ?";
+        QSqlQuery query;
+        query.prepare(sql);
+        query.bindValue(0, QVariant("%ha%"));
         if (query.exec()) {
             while (query.next()) {
-                auto relnameV = query.value("relname");
-                auto relpagesV = query.value("relpages");
-                auto cntV = query.value("cnt");
-                auto relname = relnameV.toString();
-                auto relpages = relpagesV.toInt();
-                auto cnt = cntV.toInt();
-                qInfo().noquote().nospace() << "relname=" << relname << ", relpages=" << relpages << ", cnt=" << cnt;
+                auto email = query.value("email").toString();
+                auto name = query.value("name").toString();
+                qInfo().nospace().noquote() << "email=" << email << ", name=" << name;
             }
         } else {
             qDebug() << query.lastError().text();
         }
     }
+
+
     return 0;
 }
