@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         auto model = dynamic_cast<QSqlQueryModel*>(ui->tableView->model());
         model->setQuery(std::move(query));
+
     });
 
 }
