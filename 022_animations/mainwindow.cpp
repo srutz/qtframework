@@ -9,6 +9,8 @@
 #include "ui_mainwindow.h"
 #include "animatedgraphicsitem.h"
 
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -24,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     //adjustSize();
     //setupScene();
 
-    QObject::connect(scene, &QGraphicsScene::selectionChanged, [=] () {
+    QObject::connect(scene, &QGraphicsScene::selectionChanged, scene, [=] () {
         auto selectedItems = scene->selectedItems();
         QString s;
         QTextStream ts(&s);
@@ -74,6 +76,8 @@ void MainWindow::setupScene()
         "sq_pexels-yana-kangal-17579752.jpg",
     };
 
+    static auto re1 = QRegularExpression("^sq_pexels-");
+
     pictures.clear();
     for (auto &image : images) {
         QPixmap pixmap(":/images/" + image);
@@ -82,7 +86,6 @@ void MainWindow::setupScene()
         picture->setFlag(QGraphicsItem::ItemIsSelectable, true);
         picture->setPos(0, 0);
         QString shortname = image;
-        auto re1 = QRegularExpression("^sq_pexels-");
         shortname.replace(re1, "");
         picture->setData(0, QVariant(shortname));
         scene->addItem(picture);
