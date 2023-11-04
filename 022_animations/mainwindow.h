@@ -22,12 +22,15 @@ public slots:
     void setupScene();
     void animate1();
     void animate2();
+    void toggleMaximized();
 
 private:
     Ui::MainWindow *ui;
     QVector<QGraphicsPixmapItem*> pictures;
 
     void  setPositionAnimated(QGraphicsItem *item, double x, double y);
+    void  setScaleAnimated(QGraphicsItem *item, double scale);
+    void  setRotationAnimated(QGraphicsItem *item, double angle);
 
 };
 #endif // MAINWINDOW_H
