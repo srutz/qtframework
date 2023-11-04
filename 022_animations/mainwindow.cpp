@@ -45,7 +45,8 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     QObject::connect(ui->actionReset, &QAction::triggered, this, &MainWindow::setupScene);
-    QObject::connect(ui->actionAnimate, &QAction::triggered, this, &MainWindow::animate);
+    QObject::connect(ui->actionAnimate1, &QAction::triggered, this, &MainWindow::animate1);
+    QObject::connect(ui->actionAnimate2, &QAction::triggered, this, &MainWindow::animate2);
 }
 
 MainWindow::~MainWindow()
@@ -96,6 +97,7 @@ void  MainWindow::setPositionAnimated(QGraphicsItem *item, double x, double y)
     animatedItem->setItem(item);
     auto animation = new QPropertyAnimation(animatedItem, "pos", this);
     animation->setDuration(400);
+    animation->setStartValue(item->pos());
     animation->setEndValue(QPointF(x, y));
     animation->setEasingCurve(QEasingCurve::InOutElastic);
     animation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -103,9 +105,9 @@ void  MainWindow::setPositionAnimated(QGraphicsItem *item, double x, double y)
 }
 
 
-void MainWindow::animate()
+void MainWindow::animate1()
 {
-    qInfo()<< "animate";
+    qInfo()<< "animate1";
     int cols = 3;
     int rows = std::ceil((double) pictures.size() / cols);
     int w = 220;
@@ -121,8 +123,24 @@ void MainWindow::animate()
             if (index < pictures.size()) {
                 auto picture = pictures[index];
                 //picture->setPos(x * w, y * h);
+                picture->setZValue(index);
                 setPositionAnimated(picture, x * w, y * h);
             }
         }
+    }
+}
+
+void MainWindow::animate2()
+{
+    qInfo()<< "animate2";
+    auto f = pictures[0];
+    pictures.pop_front();
+    pictures.push_back(f);
+
+    for (int i = 0; i < pictures.size(); i++) {
+        auto picture = pictures[i];
+        //picture->setPos(x * w, y * h);
+        picture->setZValue(i);
+        setPositionAnimated(picture, 10 + i * 30, 10 + i * 30);
     }
 }

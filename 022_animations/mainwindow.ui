@@ -40,7 +40,8 @@
      <string>&amp;Action</string>
     </property>
     <addaction name="actionReset"/>
-    <addaction name="actionAnimate"/>
+    <addaction name="actionAnimate1"/>
+    <addaction name="actionAnimate2"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Action"/>
@@ -51,7 +52,7 @@
     <string>E&amp;xit</string>
    </property>
   </action>
-  <action name="actionAnimate">
+  <action name="actionAnimate1">
    <property name="text">
     <string>&amp;Animate</string>
    </property>
@@ -59,6 +60,11 @@
   <action name="actionReset">
    <property name="text">
     <string>&amp;Reset</string>
+   </property>
+  </action>
+  <action name="actionAnimate2">
+   <property name="text">
+    <string>A&amp;nimate2</string>
    </property>
   </action>
  </widget>

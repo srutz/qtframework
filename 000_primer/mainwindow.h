@@ -2,9 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QVector>
-#include <QGraphicsPixmapItem>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,16 +15,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-public slots:
-    void setupScene();
-    void animate1();
-    void animate2();
-
 private:
     Ui::MainWindow *ui;
-    QVector<QGraphicsPixmapItem*> pictures;
-
-    void  setPositionAnimated(QGraphicsItem *item, double x, double y);
-
 };
 #endif // MAINWINDOW_H
