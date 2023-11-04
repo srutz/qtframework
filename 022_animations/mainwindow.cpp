@@ -70,7 +70,7 @@ void MainWindow::setupScene()
         "sq_pexels-rajesh-balouria-1322599.jpg",
         "sq_pexels-roman-odintsov-12715260.jpg",
         "sq_pexels-sami-aksu-11325507.jpg",
-        "sq_pexels-vedran-miletić-2313396.jpg",
+        "sq_pexels-vedran-miletic-2313396.jpg",
         "sq_pexels-yana-kangal-17579752.jpg",
     };
 
