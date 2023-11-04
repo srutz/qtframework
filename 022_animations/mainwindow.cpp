@@ -1,6 +1,9 @@
 #include <QDebug>
 #include <QPropertyAnimation>
 #include <QTimer>
+#include <QTextStream>
+#include <QString>
+#include <QRegularExpression>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -14,9 +17,27 @@ MainWindow::MainWindow(QWidget *parent)
     auto scene = new QGraphicsScene(ui->graphicsView);
     auto view = this->ui->graphicsView;
     view->setScene(scene);
+    view->setRenderHint(QPainter::Antialiasing);
+    view->setDragMode(QGraphicsView::RubberBandDrag);
+    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
     //ui->graphicsView->setFixedSize(600, 600);
     //adjustSize();
     //setupScene();
+
+    QObject::connect(scene, &QGraphicsScene::selectionChanged, [=] () {
+        auto selectedItems = scene->selectedItems();
+        QString s;
+        QTextStream ts(&s);
+        int i = 0;
+        for (auto item : selectedItems) {
+            if (i > 0) {
+                ts << ", ";
+            }
+            ts << item->data(0).toString();
+            i++;
+        }
+        ui->statusbar->showMessage(s, 4500);
+    });
 
     QTimer::singleShot(100, this, [=]() {
         scene->setSceneRect(QRectF(0, 0, view->viewport()->rect().width(), view->viewport()->rect().height()));
@@ -50,7 +71,6 @@ void MainWindow::setupScene()
         "sq_pexels-sami-aksu-11325507.jpg",
         "sq_pexels-vedran-miletić-2313396.jpg",
         "sq_pexels-yana-kangal-17579752.jpg",
-
     };
 
     pictures.clear();
@@ -58,7 +78,12 @@ void MainWindow::setupScene()
         QPixmap pixmap(":/images/" + image);
         pixmap = pixmap.scaled(200, 200);
         QGraphicsPixmapItem *picture = new QGraphicsPixmapItem(pixmap);
+        picture->setFlag(QGraphicsItem::ItemIsSelectable, true);
         picture->setPos(0, 0);
+        QString shortname = image;
+        auto re1 = QRegularExpression("^sq_pexels-");
+        shortname.replace(re1, "");
+        picture->setData(0, QVariant(shortname));
         scene->addItem(picture);
         pictures.push_back(picture);
     }
