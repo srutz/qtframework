@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/sq_pexels-mehmet-turgut-kirkgoz-16596877.jpg</file>
+        <file>images/sq_pexels-roman-odintsov-12715260.jpg</file>
+        <file>images/sq_pexels-sami-aksu-11325507.jpg</file>
+        <file>images/sq_pexels-yana-kangal-17579752.jpg</file>
+    </qresource>
+</RCC>
