@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     webView = new QWebEngineView();
+    webView->setHtml("<html><body><h1>The WebView</h1></body></html>");
 
     auto layout = new QVBoxLayout();
     layout->addWidget(webView);
