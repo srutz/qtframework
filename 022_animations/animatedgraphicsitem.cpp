@@ -30,4 +30,29 @@ void AnimatedGraphicsItem::setPos(QPointF &pos)
     }
 }
 
+double AnimatedGraphicsItem::scale() const
+{
+    return m_scale;
+}
 
+void AnimatedGraphicsItem::setScale(double scale)
+{
+    this->m_scale = scale;
+    if (m_item) {
+        m_item->setScale(scale);
+    }
+}
+
+double AnimatedGraphicsItem::rotation() const
+{
+    return m_rotation;
+}
+
+void AnimatedGraphicsItem::setRotation(double rotation)
+{
+    this->m_rotation = rotation;
+    if (m_item) {
+        m_item->setTransformOriginPoint(m_item->boundingRect().center());
+        m_item->setRotation(rotation);
+    }
+}

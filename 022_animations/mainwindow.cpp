@@ -3,6 +3,7 @@
 #include <QTimer>
 #include <QTextStream>
 #include <QString>
+#include <QTimer>
 #include <QRegularExpression>
 
 #include "mainwindow.h"
@@ -49,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->actionReset, &QAction::triggered, this, &MainWindow::setupScene);
     QObject::connect(ui->actionAnimate1, &QAction::triggered, this, &MainWindow::animate1);
     QObject::connect(ui->actionAnimate2, &QAction::triggered, this, &MainWindow::animate2);
+    QObject::connect(ui->actionScale, &QAction::triggered, this, &MainWindow::toggleMaximized);
 }
 
 MainWindow::~MainWindow()
@@ -95,7 +97,6 @@ void MainWindow::setupScene()
 
 void  MainWindow::setPositionAnimated(QGraphicsItem *item, double x, double y)
 {
-    //qInfo() << "pos animation " << item << x << y;
     auto animatedItem = new AnimatedGraphicsItem();
     animatedItem->setItem(item);
     auto animation = new QPropertyAnimation(animatedItem, "pos", this);
@@ -105,6 +106,42 @@ void  MainWindow::setPositionAnimated(QGraphicsItem *item, double x, double y)
     animation->setEasingCurve(QEasingCurve::InOutElastic);
     animation->setEasingCurve(QEasingCurve::InOutQuad);
     animation->start();
+    QObject::connect(animation, &QPropertyAnimation::finished, this, [=] {
+       delete animation;
+       delete animatedItem;
+    });
+}
+
+void  MainWindow::setScaleAnimated(QGraphicsItem *item, double scale)
+{
+    auto animatedItem = new AnimatedGraphicsItem();
+    animatedItem->setItem(item);
+    auto animation = new QPropertyAnimation(animatedItem, "scale", this);
+    animation->setDuration(400);
+    animation->setStartValue(item->scale());
+    animation->setEndValue(scale);
+    animation->setEasingCurve(QEasingCurve::InOutElastic);
+    animation->start();
+    QObject::connect(animation, &QPropertyAnimation::finished, this, [=] {
+       delete animation;
+       delete animatedItem;
+    });
+}
+
+void  MainWindow::setRotationAnimated(QGraphicsItem *item, double rotation)
+{
+    auto animatedItem = new AnimatedGraphicsItem();
+    animatedItem->setItem(item);
+    auto animation = new QPropertyAnimation(animatedItem, "rotation", this);
+    animation->setDuration(400);
+    animation->setStartValue(item->rotation());
+    animation->setEndValue(rotation);
+    animation->setEasingCurve(QEasingCurve::InOutQuad);
+    animation->start();
+    QObject::connect(animation, &QPropertyAnimation::finished, this, [=] {
+       delete animation;
+       delete animatedItem;
+    });
 }
 
 
@@ -144,6 +181,21 @@ void MainWindow::animate2()
         auto picture = pictures[i];
         //picture->setPos(x * w, y * h);
         picture->setZValue(i);
-        setPositionAnimated(picture, 10 + i * 30, 10 + i * 30);
+        setPositionAnimated(picture, 10 + i * 40, 10 + i * 40);
     }
+}
+
+
+void MainWindow::toggleMaximized()
+{
+    //auto items= ui->graphicsView->scene()->selectedItems();
+    auto items = this->pictures;
+    int i = 0;
+    for (auto item : items) {
+        QTimer::singleShot(10 + 75 * (i / 3), Qt::TimerType::CoarseTimer, this, [=] {
+            setRotationAnimated(item, item->rotation() + 450);
+        });
+        i++;
+    }
+
 }

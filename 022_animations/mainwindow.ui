@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>720</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -42,6 +42,7 @@
     <addaction name="actionReset"/>
     <addaction name="actionAnimate1"/>
     <addaction name="actionAnimate2"/>
+    <addaction name="actionScale"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Action"/>
@@ -65,6 +66,11 @@
   <action name="actionAnimate2">
    <property name="text">
     <string>A&amp;nimate2</string>
+   </property>
+  </action>
+  <action name="actionScale">
+   <property name="text">
+    <string>&amp;Turn</string>
    </property>
   </action>
  </widget>
