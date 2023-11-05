@@ -112,24 +112,10 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(ui->rightWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     QLabel *label = new QLabel(this);
+    label->setObjectName("label");
     label->setAlignment(Qt::AlignCenter);
     layout->addWidget(chartView);
     layout->addWidget(label);
-
-    QObject::connect(series, &QAbstractBarSeries::clicked, series, [=](int index, QBarSet *set) {
-        set->toggleSelection({index});
-        QString category = categories[index];
-        qInfo() << "selected " << category << ", set=" << set << ", index=" << index;
-        auto results2021 = electionMap->value(m_area + "/2021");
-        auto results2017 = electionMap->value(m_area + "/2017");
-
-        double percent2021 = results2021.index(index);
-        double percent2017 = results2017.index(index);
-
-        QString info = QString::asprintf("%ls, 2021=%.2f%%, 2017=%.2f%%", category.utf16(), percent2021, percent2017);
-        qInfo() << info;
-        label->setText(info);
-    });
     label->setText("-");
 }
 
@@ -166,6 +152,23 @@ QBarSeries* MainWindow::fillChart(const QString &area)
     QBarSeries *series = new QBarSeries();
     series->append(y2021);
     series->append(y2017);
+
+    QObject::connect(series, &QAbstractBarSeries::clicked, series, [=](int index, QBarSet *set) {
+        set->toggleSelection({index});
+        QString category = categories[index];
+        qInfo() << "selected " << category << ", set=" << set << ", index=" << index;
+        auto results2021 = electionMap->value(m_area + "/2021");
+        auto results2017 = electionMap->value(m_area + "/2017");
+
+        double percent2021 = results2021.index(index);
+        double percent2017 = results2017.index(index);
+
+        QString info = QString::asprintf("%ls, 2021=%.2f%%, 2017=%.2f%%", category.utf16(), percent2021, percent2017);
+        qInfo() << info;
+        auto label = this->findChild<QLabel*>("label");
+        label->setText(info);
+    });
+
     return series;
 }
 
