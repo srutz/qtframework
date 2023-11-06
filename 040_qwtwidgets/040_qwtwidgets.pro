@@ -2,7 +2,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-include ( /usr/local/qwt-6.2.0/features/qwt.prf )
+#include ( /usr/local/qwt-6.2.0/features/qwt.prf )
+include ( c:\Qwt-6.3.0-dev\features\qwt.prf )
 
 
 CONFIG += c++17

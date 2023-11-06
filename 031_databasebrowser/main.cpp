@@ -6,9 +6,11 @@
 
 int main(int argc, char *argv[])
 {
+    //QApplication::setStyle(QStyleFactory::create("Universal"));
     QApplication a(argc, argv);
-    //a.setStyle(QStyleFactory::create("Universal"));
+    a.setStyle(QStyleFactory::create("Fusion"));
     //QApplication::setStyle(QStyleFactory::create("Fusion"));
+    //QApplication::setStyle(QStyleFactory::create("Universal"));
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName("localhost");

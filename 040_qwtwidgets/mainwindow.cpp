@@ -29,16 +29,48 @@ public:
         counter = 0;
     }
 
-    void mousePressEvent( QMouseEvent* ) override
+    void mouseDoubleClickEvent(QMouseEvent* event) override
     {
-        setValueAnimated(counter% 2 == 0 ? this->maximum() : this->minimum());
+        setValueAnimated(counter% 2 == 0 ? this->maximum() : this->minimum(), 2000);
         counter++;
     }
 
-    void setValueAnimated(double value)
+    void setValueAnimated(double value, int duration = 750)
     {
         auto animation = new QPropertyAnimation(this, "value", this);
-        animation->setDuration(750);
+        animation->setDuration(duration);
+        animation->setStartValue(this->value());
+        animation->setEndValue(value);
+        animation->setEasingCurve(QEasingCurve::InOutElastic);
+        animation->setEasingCurve(QEasingCurve::InOutQuad);
+        animation->start();
+        connect(animation, &QPropertyAnimation::finished, this, [=]() {
+            delete animation;
+        });
+    }
+
+private:
+    int counter;
+};
+
+
+class MyDial : public QwtDial {
+public:
+
+    MyDial(QWidget *parent = nullptr) : QwtDial(parent) {
+        counter = 0;
+    }
+
+    void mouseDoubleClickEvent(QMouseEvent* event) override
+    {
+        setValueAnimated(counter% 2 == 0 ? this->maximum() : this->minimum(), 1500);
+        counter++;
+    }
+
+    void setValueAnimated(double value, int duration = 750)
+    {
+        auto animation = new QPropertyAnimation(this, "value", this);
+        animation->setDuration(duration);
         animation->setStartValue(this->value());
         animation->setEndValue(value);
         animation->setEasingCurve(QEasingCurve::InOutQuad);
@@ -52,6 +84,8 @@ public:
 private:
     int counter;
 };
+
+
 
 
 struct Entry {
@@ -89,9 +123,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // about dialog
     QObject::connect(ui->actionAbout, &QAction::triggered, this, [=]() {
-        AboutDialog dialog(this);
-        dialog.setModal(true);
-        dialog.show();
+        auto * dialog = new AboutDialog(this);
+        dialog->setModal(true);
+        dialog->show();
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
     });
 }
 
@@ -113,7 +148,7 @@ QWidget* MainWindow::makeDial()
     for (int i = 0; i < n; i++) {
         int row = i / n_2;
         int column = i % n_2;
-        auto dial = new QwtDial();
+        auto dial = new MyDial();
         dial->setTracking(true);
         dial->setFocusPolicy(Qt::StrongFocus);
         dial->setObjectName("dial1");
