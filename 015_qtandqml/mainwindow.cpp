@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    auto url = QUrl::fromLocalFile("/home/sr/work/qt/qtframework/015_qtandqml/logoshapes.qml");
+    auto url = QUrl::fromLocalFile("/Users/sr/Desktop/qtframework/015_qtandqml/logoshapes.qml");
     ui->quickWidget->setResizeMode(QQuickWidget::ResizeMode::SizeViewToRootObject);
     ui->quickWidget->setResizeMode(QQuickWidget::ResizeMode::SizeRootObjectToView);
     ui->quickWidget->setSource(url);

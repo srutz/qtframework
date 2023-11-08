@@ -10,7 +10,7 @@ Item {
 
     Image {
         id: image1
-        source: "/home/sr/stepan.jpg"
+        source: "/Users/sr/Desktop/qtframework/015_qtandqml/stepan.jpg"
         fillMode: Image.PreserveAspectFit
         anchors.fill: parent
         transformOrigin: Item.Center
