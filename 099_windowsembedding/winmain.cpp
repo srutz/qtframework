@@ -1,14 +1,18 @@
-
+#ifndef UNICODE
+#define UNICODE
+#endif
 #include <windows.h>
 
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
-char szClassName[] = "HelloWin";
+wchar_t szClassName[] = L"HelloWin";
 
-int WINAPI WinMain(HINSTANCE hThisInstance,
-                   HINSTANCE hPrevInstance,
-                   LPSTR lpszArgument,
-                   int nCmdShow)
+
+int WINAPI XWinMain(
+    HINSTANCE hThisInstance,
+    HINSTANCE hPrevInstance,
+    LPSTR lpszArgument,
+    int nCmdShow)
 {
     HWND hwnd;               // Handle für das Fenster
     MSG messages;            // Nachrichtenstruktur
@@ -35,7 +39,7 @@ int WINAPI WinMain(HINSTANCE hThisInstance,
     hwnd = CreateWindowEx(
         0,                   // extended wm styles
         szClassName,
-        "Hello Windows",
+        L"Hello Windows",
         WS_OVERLAPPEDWINDOW, // standard
         CW_USEDEFAULT,       // position
         CW_USEDEFAULT,       // position
@@ -71,5 +75,13 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
     }
 
     return 0;
+}
+
+
+
+void launchWindows()
+{
+    HINSTANCE hInstance = GetModuleHandleA(nullptr);
+    XWinMain(hInstance, 0, (LPSTR) "", SW_SHOW);
 }
 
