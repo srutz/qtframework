@@ -9,7 +9,7 @@ class EmbeddedWidget : public QWidget
 public:
     explicit EmbeddedWidget(HWND parentHwnd, bool dummy)
     {
-        setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
+        setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::SubWindow);
         SetParent((HWND)winId(), parentHwnd);
 
         LONG style = GetWindowLong((HWND)winId(), GWL_STYLE);
