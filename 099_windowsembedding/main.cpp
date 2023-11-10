@@ -19,5 +19,6 @@ int main(int argc, char *argv[])
     embeddedWidget->setStyleSheet("background-color: oraange;");
     embeddedWidget->resize(200, 200);
 
+
     return a.exec();
 }

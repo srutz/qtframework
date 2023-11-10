@@ -1,8 +1,10 @@
 #include <QWidget>
 #include <Windows.h>
 #include <QLabel>
+#include <QPushButton>
 #include <QDebug>
 #include <QVBoxLayout>
+#include "winmain.h"
 
 class EmbeddedWidget : public QWidget
 {
@@ -19,9 +21,18 @@ public:
         /* set size and pos here or from within windows code */
         MoveWindow((HWND)winId(), 0, 0, 200, 200, true);
 
+        auto b1 = new QPushButton();
+        b1->setText("click me");
+
         auto layout = new QHBoxLayout(this);
         auto label = new QLabel(this);
-        layout->addWidget(label);
+        //layout->addWidget(label);
+        layout->addWidget(b1);
+
+        connect(b1, &QPushButton::clicked, this, [=]() {
+            SetWindowTextW(mainWindow, L"set from qt");
+        });
+
         this->setLayout(layout);
         qInfo() << "constructed. embedded widget";
     }

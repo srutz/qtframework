@@ -138,7 +138,7 @@ MainWindow::~MainWindow()
 
 QWidget* MainWindow::makeDial()
 {
-    int n = 4;
+    int n = 16;
     int n_2 = std::sqrt(n);
     QWidget *panel = new QWidget(this);
     auto layout = new QGridLayout(panel);
@@ -160,7 +160,7 @@ QWidget* MainWindow::makeDial()
         dial->setValue(75);
 
         QColor needleColor(Qt::red);
-        needleColor = QColor("Goldenrod");
+        needleColor = i % 2 == 1 ? QColor("Goldenrod") : QColor("blue");
         QwtDialSimpleNeedle* needle = new QwtDialSimpleNeedle(
             QwtDialSimpleNeedle::Arrow, true, needleColor,
             QColor(Qt::gray).lighter(130));
