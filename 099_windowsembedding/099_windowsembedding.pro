@@ -9,18 +9,22 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    applicationstatus.cpp \
     guiowner.cpp \
     guiworker.cpp \
     main.cpp \
     mainwindow.cpp \
-    winmain.cpp
+    winmain.cpp \
+    winutil.cpp
 
 HEADERS += \
+    applicationstatus.h \
     embeddedwidget.h \
     guiowner.h \
     guiworker.h \
     mainwindow.h \
-    winmain.h
+    winmain.h \
+    winutil.h
 
 FORMS += \
     mainwindow.ui
@@ -29,3 +33,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+QMAKE_CXXFLAGS += -fpermissive
+
