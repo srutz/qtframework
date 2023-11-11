@@ -42,6 +42,49 @@ public:
         /* handle windows messages here */
         return QWidget::nativeEvent(eventType, message, result);
     }
+
+    bool event(QEvent *e) {
+        switch(e->type()) {
+        case QEvent::Polish:
+            break;
+        case QEvent::WindowBlocked:
+            //if (hwnd)
+            //    EnableWindow(hwnd, false);
+            break;
+        case QEvent::WindowUnblocked:
+            //if (hwnd)
+            //    EnableWindow(hwnd, true);
+            break;
+        default:
+            break;
+        }
+        return QWidget::event(e);
+    }
+
+    void showEvent(QShowEvent *e) override {
+        QWidget::showEvent(e);
+        qInfo() << "showEvent";
+        //if (hwnd)
+        //    SetWindowPos(hwnd, HWND_TOP, 0, 0, width(), height(), SWP_SHOWWINDOW);
+    }
+
+    void focusInEvent(QFocusEvent *e) override{
+        QWidget::focusInEvent(e);
+        //if (hwnd)
+        //    ::SetFocus(hwnd);
+    }
+
+    void resizeEvent(QResizeEvent *e) override {
+        QWidget::resizeEvent(e);
+        //if (hwnd)
+        //    SetWindowPos(hwnd, HWND_TOP, 0, 0, width(), height(), 0);
+    }
+
+    void paintEvent(QPaintEvent *e) override {
+        QWidget::paintEvent(e);
+        qInfo() << "paintEvent";
+    }
+
 };
 
 

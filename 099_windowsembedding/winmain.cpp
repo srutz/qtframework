@@ -1,14 +1,18 @@
-#ifndef UNICODE
-#define UNICODE
-#endif
-#include <windows.h>
-#include <string>
+
+#include "winmain.h"
+#include "winutil.h"
+#include "applicationstatus.h"
 #include <QString>
 #include <QTextStream>
 #include <QDebug>
+#include <string>
+
+
+#define ID_ACTION_EXIT 1001
 
 
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
+void setupMenu(HWND);
 
 wchar_t szClassName[] = L"HelloWin";
 
@@ -21,7 +25,6 @@ int WINAPI XWinMain(
     int nCmdShow)
 {
     HWND hwnd;
-    MSG messages;
     WNDCLASSEX wincl;
 
     /* windows class registration */
@@ -54,10 +57,18 @@ int WINAPI XWinMain(
         NULL,
         hThisInstance,
         NULL
-    );
+        );
     mainWindow = hwnd;
     qDebug() << "assigned mainwindow to " << mainWindow;
+
+    setupMenu(hwnd);
+
     ShowWindow(hwnd, nCmdShow);
+}
+
+void windowEventPump() {
+
+    MSG messages;
     while (GetMessage(&messages, NULL, 0, 0))
     {
         TranslateMessage(&messages); // Übersetzt virtuelle Tastenanschläge
@@ -73,26 +84,51 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
     switch (message)
     {
     case WM_DESTROY:
-      PostQuitMessage(0);
-      break;
+        PostQuitMessage(0);
+        break;
     case WM_CREATE:
     {
-      QString q("hello windows ");
-      QTextStream ts(&q);
-      ts << mainWindow;
-      ts << " " << hwnd;
-      auto ws = q.toStdWString();
-      auto raw = ws.c_str();
-      child = CreateWindowEx(0, L"STATIC",  raw, WS_CHILD | WS_VISIBLE,
-                             10, 10, 200, 20, hwnd, (HMENU)1, NULL, NULL);
-      //MessageBox(hwnd, "Hello, World!", "Greetings", MB_OK);
+        QString q("hello windows ");
+        QTextStream ts(&q);
+        ts << mainWindow;
+        ts << " " << hwnd;
+        auto ws = q.toStdWString();
+        auto raw = ws.c_str();
+        child = CreateWindowEx(0, L"STATIC",  raw, WS_CHILD | WS_VISIBLE,
+                               10, 10, 200, 20, hwnd, (HMENU)1, NULL, NULL);
+        //MessageBox(hwnd, "Hello, World!", "Greetings", MB_OK);
+
+        auto as = ApplicationStatus::getInstance();
+        as->eventOccured(ApplicationEvent::WIN_WM_CREATED);
     }
-      break;
+    break;
+    case WM_PAINT:
+        break;
+    case WM_SHOWWINDOW:
+        break;
+    case WM_COMMAND:
+        switch(LOWORD(wParam))
+        {
+        case ID_ACTION_EXIT:
+            WinUtil::dumpChildren(hwnd);
+            //MessageBox(hwnd, L"action exit", L"Confirm", MB_OK);
+            break;
+        }
+
     default:
-      return DefWindowProc(hwnd, message, wParam, lParam);
+        return DefWindowProc(hwnd, message, wParam, lParam);
     }
 
     return 0;
+}
+
+
+void setupMenu(HWND parentWindow) {
+    HMENU hMenu = CreateMenu();
+    HMENU hFileMenu = CreateMenu();
+    AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT) hFileMenu, L"&File");
+    AppendMenu(hFileMenu, MF_STRING, ID_ACTION_EXIT, L"E&xit");
+    SetMenu(parentWindow, hMenu);
 }
 
 
