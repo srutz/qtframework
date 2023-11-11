@@ -2,11 +2,17 @@
 #define UNICODE
 #endif
 #include <windows.h>
+#include <string>
+#include <QString>
+#include <QTextStream>
+#include <QDebug>
+
 
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
 wchar_t szClassName[] = L"HelloWin";
 
+HWND mainWindow = 0;
 
 int WINAPI XWinMain(
     HINSTANCE hThisInstance,
@@ -14,12 +20,11 @@ int WINAPI XWinMain(
     LPSTR lpszArgument,
     int nCmdShow)
 {
-    HWND hwnd;               // Handle für das Fenster
-    MSG messages;            // Nachrichtenstruktur
-    WNDCLASSEX wincl;        // Datenstruktur für die Fensterklasse
+    HWND hwnd;
+    MSG messages;
+    WNDCLASSEX wincl;
 
     /* windows class registration */
-    // Fensterklasse konfigurieren
     wincl.hInstance = hThisInstance;
     wincl.lpszClassName = szClassName;
     wincl.lpfnWndProc = WindowProcedure;
@@ -50,6 +55,8 @@ int WINAPI XWinMain(
         hThisInstance,
         NULL
     );
+    mainWindow = hwnd;
+    qDebug() << "assigned mainwindow to " << mainWindow;
     ShowWindow(hwnd, nCmdShow);
     while (GetMessage(&messages, NULL, 0, 0))
     {
@@ -62,13 +69,24 @@ int WINAPI XWinMain(
 /* winproc */
 LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    static HWND child;
     switch (message)
     {
     case WM_DESTROY:
       PostQuitMessage(0);
       break;
     case WM_CREATE:
+    {
+      QString q("hello windows ");
+      QTextStream ts(&q);
+      ts << mainWindow;
+      ts << " " << hwnd;
+      auto ws = q.toStdWString();
+      auto raw = ws.c_str();
+      child = CreateWindowEx(0, L"STATIC",  raw, WS_CHILD | WS_VISIBLE,
+                             10, 10, 200, 20, hwnd, (HMENU)1, NULL, NULL);
       //MessageBox(hwnd, "Hello, World!", "Greetings", MB_OK);
+    }
       break;
     default:
       return DefWindowProc(hwnd, message, wParam, lParam);

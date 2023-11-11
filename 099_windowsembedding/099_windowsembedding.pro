@@ -16,6 +16,7 @@ SOURCES += \
     winmain.cpp
 
 HEADERS += \
+    embeddedwidget.h \
     guiowner.h \
     guiworker.h \
     mainwindow.h \

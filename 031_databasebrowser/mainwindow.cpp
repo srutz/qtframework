@@ -23,10 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
         QString sql = ui->textEdit->toPlainText().trimmed();
         qInfo() << "query" << sql;
         QSqlQuery query(sql);
-
         auto model = dynamic_cast<QSqlQueryModel*>(ui->tableView->model());
         model->setQuery(std::move(query));
-
     });
 
 }

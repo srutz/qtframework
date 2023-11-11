@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->chart = new QChart();
     chart->setTitle("Wahlergebnisse Deutschland");
-    chart->setAnimationOptions(QChart::SeriesAnimations);
+    chart->setAnimationOptions(QChart::AllAnimations);
 
     /* load json from file */
     auto json = Util::readResourceAsString(":/convertcsv.json");
