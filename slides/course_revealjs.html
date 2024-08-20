@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Stepan Rutz">
+  <title>Qt Framework</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/black.css" id="theme">
+  
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Qt Framework</h1>
+  <p class="author">Stepan Rutz</p>
+  <p class="date">01.07.2024</p>
+</section>
+
+<section id="einführung-in-das-qt-framework" class="slide level1">
+<h1>Einführung in das Qt Framework</h1>
+</section>
+<section id="was-ist-qt" class="slide level1">
+<h1>Was ist Qt?</h1>
+<p>QT ist ein C++ GUI-Framework</p>
+<ul>
+<li>Initial sehr stark mit KDE Desktop verbunden</li>
+<li>Qt vereinfacht die C++ Entwicklung</li>
+<li>Qt hat mächtige Features und Widgets</li>
+<li>Qt ist ein Ökosystem</li>
+<li>Qt ist Multi-Plattform und Cross-Plattform</li>
+</ul>
+</section>
+<section id="warum-qt-verwenden" class="slide level1">
+<h1>Warum Qt verwenden?</h1>
+<p>Das beste Framework mit Unterstützung für:</p>
+<ul>
+<li>3D (OpenGL, Vulcan), 2D, Webengines, Device-Unterstützung, SQL</li>
+<li>Multimedia, QML</li>
+<li>Base-Library</li>
+<li>Eigener Technologiezyklus + Guter Geschmack &gt; 20 Jahre
+Verlässlichkeit</li>
+<li>Momentum</li>
+</ul>
+</section>
+<section id="opensource-version" class="slide level1">
+<h1>Opensource version</h1>
+<p><a
+href="https://www.qt.io/download-qt-installer-oss">https://www.qt.io/download-qt-installer-oss</a></p>
+<ul>
+<li>Der Installer benötigt einen Account bei Qt.</li>
+<li>Das Maintenance Tool ist Teil des Installers und wird für Updates
+und für das Nachinstallieren von Komponenten benötigt.</li>
+</ul>
+</section>
+<section id="commercial-version" class="slide level1">
+<h1>Commercial version</h1>
+<ul>
+<li>Tools, Add-ons, besonders für Embedded-Devices.</li>
+<li>Statisches Linken</li>
+<li>Kein Opensource-Zwang</li>
+</ul>
+</section>
+<section id="dokumentation-und-weitere-infos" class="slide level1">
+<h1>Dokumentation und weitere Infos</h1>
+<h2 id="canonical">Canonical</h2>
+<p><a href="https://doc.qt.io/">https://doc.qt.io/</a></p>
+<h2 id="empfehlungen">Empfehlungen</h2>
+<ul>
+<li>C++ GUI Programming with Qt 4 (2nd Edition) - The official C++/Qt
+book</li>
+<li><a
+href="https://github.com/mikeroyal/Qt-Guide">https://github.com/mikeroyal/Qt-Guide</a></li>
+<li><a
+href="https://www.youtube.com/watch?v=g7yijWiZTmI&amp;list=PL6CJYn40gN6iFcTyItvnE5nOmJR8qk_7o">Kurs
+zu QtWidgets von KDAB</a></li>
+</ul>
+<h2 id="weitere-bücher-zu-qt">Weitere Bücher zu Qt</h2>
+<ul>
+<li>Qt5 C++ GUI Programming Cookbook - Second Edition</li>
+</ul>
+</section>
+<section id="bücher-und-links-zu-c" class="slide level1">
+<h1>Bücher und Links zu C++</h1>
+<ul>
+<li>Die C++ Programmiersprache von Bjarne Stroustrup</li>
+<li>Effective Modern C++ by Scott Meyers</li>
+<li><a href="https://cplusplus.com/">https://cplusplus.com/</a></li>
+<li><a href="https://www.fluentcpp.com/posts/">Fluent C++</a></li>
+<li><a href="https://www.youtube.com/user/cppcon">Cpp Con Videos</a>
+(Empfehlung: Alle Back to Basics Videos)</li>
+</ul>
+</section>
+<section id="einführung-in-die-qt-entwicklungsumgebung"
+class="slide level1">
+<h1>Einführung in die Qt-Entwicklungsumgebung</h1>
+<p><code>Qt Creator</code> ist die Entwicklungsumgebung.</p>
+<p>Großer Effort von Qt und sehr leistungsfähige IDE.</p>
+<ul>
+<li>IDE bedeutet, dass man seinen ganzen Tag in dem Tool verbringt</li>
+<li>CoPilot muss als Plugin aktiviert werden und verwendet Vim + Node.js
+Infrastruktur</li>
+</ul>
+<p>Man kann auch Vim, Neovim, Emacs, VisualStudio-Code, Visualstudio
+verwenden.</p>
+</section>
+<section id="which-way" class="slide level1">
+<h1>Which way?</h1>
+<ul>
+<li>Python vs. C++</li>
+<li>qmake vs. CMake</li>
+<li>QtGui vs QtQuick/QML</li>
+<li>Qt Creator vs. other Editors/IDEs</li>
+<li>Develop on Linux vs. Windows</li>
+</ul>
+</section>
+<section id="qt-und-c" class="slide level1">
+<h1>Qt und C++</h1>
+<ul>
+<li>Qt ist native C++ und nur hier bekommt man das volle Potential</li>
+<li>C++ selber ist erst in letzter Zeit besser geworden:<br />
+C++11: Lambda, Typeinferenz/Auto, std::move, ranges, Tupel,
+SmartPointers, Initializerlists<br />
+C++14: Lambda++, decltype<br />
+C++17: Filesystem library, std::string_view, parallel algorithms<br />
+C++20: std::range, new literals</li>
+<li>Keine Garbage Collection<br />
+Tipp bei Problemen: Valgrind</li>
+<li>Trotz Verbesserungen nur begrenzte Standard-Bibliothek</li>
+</ul>
+<p>Achtung: Qt hat eigene Implementierungen wie QVector, QSharedPointer
+etc und ist gleichzeitig stark interoperabel mit Standard C++.</p>
+</section>
+<section id="qt-to-the-rescue" class="slide level1">
+<h1>Qt to the rescue</h1>
+<p>Qt ersetzt durch sein Ökosystem viele Libraries Qt ist <strong>wie
+aus einem Guss</strong>. Qt ist einfach für (Old-School) Java-Entwickler
+zu erlernen.</p>
+<p>Obwohl Standard C++ aufgeholt hat, braucht man Bibliotheken in jedem
+Projekt. Bei Qt braucht man in der Regel kaum externe Bibliotheken.</p>
+</section>
+<section id="erste-schritte-mit-qt" class="slide level1">
+<h1>Erste Schritte mit Qt</h1>
+<p>RTM: <a href="https://doc.qt.io/">https://doc.qt.io/</a></p>
+<p>Wir werden nun eine einfache Anwendung programmieren. Das geschieht
+fast komplett durch den Designer.</p>
+<p>Dazu bitte ein “Primer” Projekt anlegen.</p>
+</section>
+<section id="erstellen-sie-ein-neues-qt-projekt" class="slide level1">
+<h1>Erstellen Sie ein neues Qt-Projekt</h1>
+<ul>
+<li>Projekt anlegen</li>
+<li>Menü erzeugen</li>
+<li>Anwendung beenden</li>
+</ul>
+</section>
+<section id="c17" class="slide level1">
+<h1>C++17</h1>
+<p>Qt verwendet C++17, wobei C++20 möglich sein sollte. Interessante
+Konstrukte/Idiome aus C++17 die in Qt genutzt werden sind:</p>
+<ul>
+<li>C++ Attribute [[nodiscard]]</li>
+<li>noexcept Operator (seit C++11)</li>
+<li>auto (C++11)</li>
+<li>constexpr (C++11)</li>
+<li>decltype (C++11)</li>
+<li>Neue APIs: chrono, random, regex, thread, tuple, array, future,
+chrono</li>
+<li>Initialisierer Ausdrücke:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> P <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">int</span> y<span class="op">;</span> <span class="op">};</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> p <span class="op">=</span> P<span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span>x <span class="op">=</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span>y <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> a1 <span class="op">=</span> <span class="bu">std::</span>array<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span><span class="dv">2</span><span class="op">&gt;{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">};</span></span></code></pre></div>
+<ul>
+<li>Destrucuring aka Structured Bindings <a
+href="https://www.fluentcpp.com/2018/06/19/3-simple-c17-features-that-will-make-your-code-simpler/">c17-features-that-make-your-code-simpler/</a></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> p <span class="op">=</span> Point<span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">};</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> <span class="op">[</span>z<span class="op">,</span> y<span class="op">]</span> <span class="op">=</span> p<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dv">4</span><span class="op">&gt;</span> arr <span class="op">=</span> <span class="op">{</span><span class="dv">100</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">300</span><span class="op">,</span> <span class="dv">400</span><span class="op">};</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> <span class="op">[</span>a1<span class="op">,</span> b1<span class="op">,</span> c1<span class="op">,</span> d1<span class="op">]</span> <span class="op">=</span> arr<span class="op">;</span></span></code></pre></div>
+</section>
+<section id="tools" class="slide level1">
+<h1>Tools</h1>
+<ul>
+<li>GDB (Gnu Debugger), unterstützt C++ und auch remote Debugging</li>
+<li>KDiff3, alternative zu Meld und unterstützt 3-Wege Merge und ist ein
+gutes Beispiel für ein Qt-Programm</li>
+<li>Valgrind, Memory Leak Detection und finden von
+Speicherzugriffsfehlern</li>
+</ul>
+<p>Perf benötigt root und sampled (wenig overhead) Valgrind benötigt
+kein root und instrumentiert (sehr viel overhead)</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">valgrind</span> <span class="at">--leak-check</span><span class="op">=</span>full <span class="at">--track-origins</span><span class="op">=</span>yes <span class="at">--verbose</span> <span class="at">--log-file</span><span class="op">=</span>valgrind-out.txt ./myprogram</span></code></pre></div>
+</section>
+<section id="c-exceptions-und-qtexceptions" class="slide level1">
+<h1>C++ Exceptions und QtExceptions</h1>
+<p>In Qt macht es Sinn die QtException zu subclassen oder bestehenden
+QtExceptions zu verwenden. Exceptions sind nicht leichtgewichtig, noch
+leicht zu verstehen. Verwendung in Ausnahmefällen. Zum Resource-Cleanup
+ist anstelle RAII zu verwenden.</p>
+<p>Merksätze zu QtExceptions. - Doku-Zitat: “QException subclasses must
+be thrown by value and caught by reference” - Nicht für fehlende Werte
+verwenden, sondern std::optional anstelle verwenden.</p>
+<p>Guter CppCon-Talk zum Thema: <a
+href="https://www.youtube.com/watch?v=Oy-VTqz1_58&amp;t=188s">Cpp
+Exceptions</a></p>
+</section>
+<section id="reihenfolge-der-include-anweisungen" class="slide level1">
+<h1>Reihenfolge der Include-Anweisungen</h1>
+<p>Es gibt 3 Arten von Headern.</p>
+<ol type="1">
+<li>Eigene Header aus dem Projekt (in Anführungszeichen),</li>
+<li>Header von Qt (starten alle mit Q) (in spitzen Klammern)</li>
+<li>Header aus der C oder C++ Standardbibliothek und weiteren
+Bibliotheken (in spitzen Klammern)</li>
+</ol>
+<p>Header mit spitzen Klammern werden in den Include-Paths gesucht,
+Header in Anführungszeichen relativ zum Arbeitsverzeichnis. Absolute
+Header könnten theoretisch auch in “” angegeben werden.</p>
+</section>
+<section id="reihenfolge-der-include-anweisungen-1"
+class="slide level1">
+<h1>Reihenfolge der Include-Anweisungen</h1>
+<p>Folgende Regel kann man grob anwenden:</p>
+<ul>
+<li><p>Eigene Header zuerst. Das sorgt dafür, dass die eigenen Header
+nicht noch weitere Header benötigen, die nicht direkt durch die Header
+selber inkludiert werden.</p></li>
+<li><p>Danach die QtHeader, auch hier werden Macros etc definiert die
+man nicht kontrolliert und welche die eigenen Header nicht beeinflussen
+sollen.</p></li>
+<li><p>Danach alle weiteren Header. Es gilt das gleiche wie für die
+Qt-Header. In einem Qt Projekt kommen die Qt-Header vor den System
+Headern.</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;MyCustomWidget.h&quot;</span><span class="pp"> </span><span class="co">// Your own header</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;QApplication&gt;</span><span class="pp">     </span><span class="co">// Qt header</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span><span class="pp">           </span><span class="co">// Standard library header</span></span></code></pre></div>
+<p>Es gibt aber Ausnahmen und Gründe von dieser Empfehlung in
+Einzelfällen abzuweichen.</p>
+<h2 id="qtcore">QtCore</h2>
+<ul>
+<li>QObject</li>
+<li>QString, QByteArray (base64 etc)</li>
+<li>QVector, QVariant, QSharedPointer</li>
+<li>QUuid, QDebug, QCalendar, QCbor, QCommandLineParser</li>
+<li>QFile, QMap, QMutex, QPromise, QProcess</li>
+<li>QJsonObject, QXmlStreamReader, QXmlStreamWriter</li>
+</ul>
+</section>
+<section id="exkurs-qdebug-und-qelapsedtimer" class="slide level1">
+<h1>Exkurs … QDebug und QElapsedTimer</h1>
+<p>Debugausgabe mit qDebug (qCritical, qFatal, qWarning, qInfo, qDebug).
+Diese Fumktionen sind Teil des Qt-Debugging-Frameworks und können auch
+in Release-Builds verwendet werden. Der Header <QtLogging> ist nicht
+notwendig, wenn man <QDebug> inkludiert.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;Hello, World!&quot;</span><span class="op">;</span></span></code></pre></div>
+<p>qDebug() kann konfiguriert werden. Die wichtigsten Möglichkeiten
+sind:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// log format for qDebug </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qSetMessagePattern</span><span class="op">(</span><span class="st">&quot;%{time yyyy-MM-dd hh:mm:ss.zzz} %{file}:%{line} %{function} %{message}&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>Formatoptionen:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// no-spaces, alignment, field widths</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> noquote <span class="op">&lt;&lt;</span> nospace <span class="op">&lt;&lt;</span> <span class="dv">42</span> <span class="op">&lt;&lt;</span> <span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> qSetFieldWidth<span class="op">(</span><span class="dv">10</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">42</span> <span class="op">&lt;&lt;</span> <span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> qSetFieldWidth<span class="op">(</span><span class="dv">10</span><span class="op">)</span> <span class="op">&lt;&lt;</span> qSetPadChar<span class="op">(</span><span class="ch">&#39;0&#39;</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">42</span> <span class="op">&lt;&lt;</span> <span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> qSetFieldWidth<span class="op">(</span><span class="dv">10</span><span class="op">)</span> <span class="op">&lt;&lt;</span> qSetFieldAlignment<span class="op">(</span><span class="ex">QTextStream::AlignRight</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">42</span> <span class="op">&lt;&lt;</span> <span class="fl">3.14</span><span class="op">;</span></span></code></pre></div>
+</section>
+<section id="zeiten-messen-mit-qelapsedtimer" class="slide level1">
+<h1>Zeiten messen mit QElapsedTimer</h1>
+<p>Microbenchmarks sind oft einfach zu schreiben. QElapsedTimer kann für
+die Zeitmessung verwendet werden. Die Zeitmessung ist nicht für extrem
+kurze Zeitspannen genau genug.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QElapsedTimer</span> timer<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>timer<span class="op">.</span>start<span class="op">();</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">// do something</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;Elapsed time:&quot;</span> <span class="op">&lt;&lt;</span> timer<span class="op">.</span>elapsed<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;ms&quot;</span><span class="op">;</span></span></code></pre></div>
+<p>// pure C++ Alternative mit std::chrono</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> start <span class="op">=</span> <span class="bu">std::</span>chrono::high_resolution_clock::now<span class="op">();</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">// do something</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> end <span class="op">=</span> <span class="bu">std::</span>chrono::high_resolution_clock::now<span class="op">();</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">// not using auto here to show the type</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>chrono<span class="op">::</span>duration<span class="op">&lt;</span><span class="dt">double</span><span class="op">,</span> <span class="bu">std::</span>milli<span class="op">&gt;</span> duration <span class="op">=</span> end <span class="op">-</span> start<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> durationMs <span class="op">=</span> duration<span class="op">.</span>count<span class="op">();</span></span></code></pre></div>
+</section>
+<section id="qobject-als-basisklasse-oder-nicht" class="slide level1">
+<h1>QObject als Basisklasse (oder nicht)</h1>
+<p>Klassen, die von QObject erben QWidget, QApplication, QTimer,
+QThread, QNetworkAccessManager, QPushButton, QLabel, QMainWindow,
+QDialog, QFile, QPainter, QLineEdit, QComboBox, QCheckBox, QVBoxLayout,
+QHBoxLayout, QStackedWidget, QTableWidget, QListWidget, QTextEdit,
+QScrollArea, QSplitter, QMenu ….</p>
+<p>Werteklassen, die nicht von QObject erben QString, QVector, QList,
+QMap, QPair, QPoint, QSize, QRect, QColor, QRegExp, QVariant, QImage,
+QPixmap, QPolygon, QFont, QBrush, QPen, QMatrix, QTransform, QMargins,
+QByteArray, QBitArray, QFlags, QDate, QTime</p>
+<p>Wichtige Konzepte: Ownership und Verbot des Kopierens (für QObject).
+COW (Copy-On-Write) für QString, QByteArray, QVector.</p>
+</section>
+<section id="qobject-teil-1" class="slide level1">
+<h1>QObject, Teil 1</h1>
+<ol type="1">
+<li><strong>Definition</strong>:
+<ul>
+<li><code>QObject</code> ist die Basisklasse für die meisten Qt
+Klassen</li>
+<li>Stellt Kernfunktionen zur Verfügung</li>
+</ul></li>
+<li><strong>Main Features</strong>:
+<ul>
+<li>Ownership, durch QObject entstehen Parent/Child Verbindungen
+zwischen Objekten</li>
+<li>Meta-object System (MOC): Signals &amp;Sslots, Qt-RTTI (Runtime type
+information) and dynamic property management.</li>
+</ul></li>
+</ol>
+<p><strong>QObject macht Qt so leistungsfähig</strong></p>
+</section>
+<section id="qobject-teil-2" class="slide level1">
+<h1>QObject, Teil 2</h1>
+<ul>
+<li>QObject kann <em>nicht</em> kopiert werden. (Der Copy-Constructor
+ist private und/oder mit =delete markiert)</li>
+<li>In C++ findet die Copy-Initialization (=der Aufruf der
+Copy-Constructors) in folgenden Situation statt
+<ul>
+<li>Ein Initialisierer steht rechts von einem Gleichheitszeichen bei
+einer Objekterzeugung (Achtung, das ist <em>kein</em> Assignment)</li>
+<li>Wenn ein Objekt beim Funktionsaufruf (Lamdas ebenso) als Wert (Pass
+by Value) übergeben wird.</li>
+<li>Wenn ein Objekt als Wert (Return by Value) aus einer Funktion
+zurückgegeben wird.</li>
+<li>Wenn eine Exception mit einem Objekt geworfen wird.</li>
+<li>Wenn eine Exception mit einem Objekt gefangen wird. (Hier Referenzen
+verwenden)</li>
+<li>Wenn ein Lamdba ein Objekt mit dem Wert captured. (via [=] oder
+expliziter Auflistung)</li>
+</ul></li>
+</ul>
+</section>
+<section id="qobject-teil-3" class="slide level1">
+<h1>QObject, Teil 3</h1>
+<ol type="1">
+<li><strong>Signals</strong>:
+<ul>
+<li>Mechanismus um Signale zu senden.</li>
+<li>Deklariert mit dem <code>signals:</code> keyword. (kein natives
+C++)</li>
+</ul></li>
+<li><strong>Slots</strong>:
+<ul>
+<li>Funktionen die auf Signale reagieren</li>
+<li>Können reguläre Member-Funktionen sein</li>
+<li>Deklariert mittels <code>public slots:</code>,
+<code>protected slots:</code>, oder <code>private slots:</code></li>
+</ul></li>
+<li><strong>Connections</strong>:
+<ul>
+<li>Eine Verbindung zwischen signal und slot.</li>
+<li>Wird mittels <code>QObject::connect()</code> hergestellt (oder
+grafisch im Qt Creator)</li>
+</ul></li>
+</ol>
+<p><strong>Signale und Slots sind die Basis für Qt’s Event-basierten
+Ansatz und Typesafe </strong></p>
+</section>
+<section id="qobject-teil-4" class="slide level1">
+<h1>QObject, Teil 4</h1>
+<ul>
+<li>Slots und Signale können auch Parameter haben und sind hier
+ebenfalls typsicher</li>
+<li>Man kann Signale auch mit Lambdas (anonyme Codeblöcke) verbinden,
+ganz ohne Slots</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QObject::connect</span><span class="op">(</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    globalStatus<span class="op">,</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&amp;</span>GlobalStatus<span class="op">::</span>statusKeyChanged<span class="op">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">[=]</span> <span class="op">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qInfo</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;status key has changed&quot;</span><span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<p>Hier ist es übrigens am besten noch ein “Ownership”-Objekt als 3.
+Parameter anzugeben.</p>
+</section>
+<section id="eventloop" class="slide level1">
+<h1>Eventloop</h1>
+<p>Die Qt-Eventloop wird in den Qt-Threads gestartet und verarbeitet
+jeweils den nächsten Event sequentiell. Events können auf die Eventloop
+gepostet werden mittels</p>
+<ul>
+<li>QTimer::singleShot (Bevorzugt)</li>
+<li>QCoreApplication::postEvent (Low Level API und Custom-Events müssen
+definiert werden).</li>
+</ul>
+<p>Für QTimer::singleShot kann man sehr gut C++ Lambdas verwenden.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> myDeleteLater<span class="op">(</span><span class="ex">QObject</span> <span class="op">*</span>o<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="ex">QTimer::singleShot</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> o<span class="op">,</span> <span class="op">[</span>o<span class="op">]()</span> <span class="op">{</span> <span class="kw">delete</span> o<span class="op">;</span> <span class="op">});</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qstring-teil-1" class="slide level1">
+<h1>QString, Teil 1</h1>
+<ol type="1">
+<li><strong>Definition</strong>:
+<ul>
+<li>QString, hat Unicode Support (QChar = 16 Bit Unicode intern)</li>
+<li>Zentrale Klasse für Text in Qt</li>
+<li>Es gibt auch QLatin1String (sehr unterschiedlich zu QString)</li>
+</ul></li>
+<li><strong>Main Features</strong>:
+<ul>
+<li>Copy-on-write mit Referenzzähler. Daten werden durch Referenzzähler
+logisch kopiert und erst bei Modifikation physikalisch kopiert.</li>
+<li>Vergleichbar mit std::wstring aber mit mehr Funktionalität.</li>
+</ul></li>
+</ol>
+</section>
+<section id="qstring-teil-2" class="slide level1">
+<h1>QString, Teil 2</h1>
+<ol type="1">
+<li><strong>Erzeugung von QStrings</strong>:
+<ul>
+<li>Can be constructed from literals, numbers, or other strings.</li>
+<li>QString str = “Hello, World!”;</li>
+</ul></li>
+<li><strong>Manipulation</strong>:
+<ul>
+<li>append(), prepend(), remove(), replace(), etc.</li>
+<li>Für einzelne Zeichen oder Strings (via C++
+Operator-Overloading)</li>
+</ul></li>
+<li><strong>Abfragen</strong>:
+<ul>
+<li>length(), isEmpty(), at(index), contains(), startsWith(),
+endsWith(), etc.</li>
+</ul></li>
+</ol>
+</section>
+<section id="qstring-teil-3" class="slide level1">
+<h1>QString, Teil 3</h1>
+<p>Beispiel: Aufteilen eines QString mittels split():</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QStringList</span> sentences <span class="op">=</span> url<span class="op">.</span>split<span class="op">(</span><span class="st">&quot;.&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>oder</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> q <span class="op">=</span> <span class="st">&quot;one. two three.. four&quot;</span><span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> sentences <span class="op">=</span> q<span class="op">.</span>split<span class="op">(</span><span class="st">&quot;.&quot;</span><span class="op">,</span> <span class="ex">Qt::SkipEmptyParts</span><span class="op">);</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> sentence <span class="op">:</span> sentences<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">qInfo</span><span class="op">()</span> <span class="op">&lt;&lt;</span> sentence<span class="op">.</span>trimmed<span class="op">();</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qstring-teil-4-konvertierungen" class="slide level1">
+<h1>QString, Teil 4: Konvertierungen</h1>
+<ol type="1">
+<li><strong>QByteArray</strong>:
+<ul>
+<li>toUtf8(), toLatin1(), fromUtf8(), fromLatin1(), etc.</li>
+</ul></li>
+<li><strong>Zahlen</strong>:
+<ul>
+<li>setNum(), number(), toInt(), toDouble(), etc.</li>
+</ul></li>
+<li><strong>Interaktion mit der STL</strong>:
+<ul>
+<li>Hin und zurück von/zu std::string, std::wstring</li>
+</ul></li>
+</ol>
+<p>Wichtig: QString(“MY_STRING_LITERAL”) ist flawed und bedeutet in der
+Regel, dass der Programmierer sich keine Gedanken über das Encoding
+gemacht hat.</p>
+<p>Das Makro #define QT_NO_CAST_FROM_ASCII 1 verhindert eine direkte
+Konvertierung mittels QString s = “abc”;</p>
+</section>
+<section id="qstring-teil-4-konvertierungen-datetime"
+class="slide level1">
+<h1>QString, Teil 4: Konvertierungen Datetime</h1>
+<p>String zu Datetime:</p>
+<pre><code>QString s = &quot;2016-05-04 12:24:00&quot;;
+QDateTime dateTime = QDateTime::fromString(s, &quot;yyyy-MM-dd hh:mm:ss&quot;);</code></pre>
+<p>Datetime zu string:</p>
+<pre><code>QDateTime dateTime = QDateTime::currentDateTime();
+QString s = dateTime.toString(&quot;dd/MM/yy hh:mm&quot;);</code></pre>
+</section>
+<section id="qstring-teil-5" class="slide level1">
+<h1>QString, Teil 5</h1>
+<p>Zusammensetzen von QStrings</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> age <span class="op">=</span> <span class="dv">25</span><span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> name <span class="op">=</span> <span class="st">&quot;John&quot;</span><span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> result <span class="op">=</span> <span class="ex">QString</span><span class="op">(</span><span class="st">&quot;My name is %1 and I am %2 years old.&quot;</span><span class="op">)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span>arg<span class="op">(</span>name<span class="op">).</span>arg<span class="op">(</span>age<span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> first <span class="op">=</span> <span class="st">&quot;Hello, &quot;</span><span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> last <span class="op">=</span> <span class="st">&quot;world!&quot;</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> result <span class="op">=</span> first <span class="op">+</span> last<span class="op">;</span>  <span class="co">// &quot;Hello, world!&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> age <span class="op">=</span> <span class="dv">25</span><span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> result <span class="op">=</span> <span class="ex">QString::asprintf</span><span class="op">(</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;I am </span><span class="sc">%d</span><span class="st"> years old.&quot;</span><span class="op">,</span> age<span class="op">);</span></span></code></pre></div>
+</section>
+<section id="qstring-teil-6" class="slide level1">
+<h1>QString, Teil 6</h1>
+<p>Man kann auch vor dem Zusammenführen die Kapazität setzen …. mittels
+QString::reserve) Dazu passend gibt es QString::squeeze() und
+QString::capacity()… QString::resize() ist jedoch eine
+semantisch-sichtbare Option.</p>
+<p><code>QStringBuilder</code> ist potentiell performanter bei größeren
+String-Konkatenationen und erzeugt auch keine temporären Objekte.</p>
+<p>Merksatz… Wenn man einen QString in einer Schleife mittels += immer
+wieder erweitert, dann ist QStringBuilder in der Regel besser.</p>
+</section>
+<section id="qbytearray" class="slide level1">
+<h1>QByteArray</h1>
+<p>QByteArray ist oft eine bessere Alternative zu char* oder
+std::vector<char> für Binärdaten (also alle Daten ;-). Moderner Standard
+wäre std::vector<std::byte> data;</p>
+<p>Beispiel: Chunking (Aufteilen in Batches der Größe n)</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">size_t</span> chunkSize <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;&gt;</span> chunks<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> data<span class="op">.</span>size<span class="op">();</span> i <span class="op">+=</span> chunkSize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    chunks<span class="op">.</span>emplace_back<span class="op">(</span>data<span class="op">.</span>begin<span class="op">()</span> <span class="op">+</span> i<span class="op">,</span> data<span class="op">.</span>begin<span class="op">()</span> <span class="op">+</span> <span class="bu">std::</span>min<span class="op">(</span>data<span class="op">.</span>size<span class="op">(),</span> i <span class="op">+</span> chunkSize<span class="op">));</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>(Achtung: Der std::partition Algorithmus ist fürs interne Reordering
+und nicht fürs “Chunking”)</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> chunkSize <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QVector</span><span class="op">&lt;</span><span class="ex">QByteArray</span><span class="op">&gt;</span> chunks<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> data<span class="op">.</span>size<span class="op">();</span> i <span class="op">+=</span> chunkSize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>   chunks<span class="op">.</span>append<span class="op">(</span>data<span class="op">.</span>mid<span class="op">(</span>i<span class="op">,</span> chunkSize<span class="op">));</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qbytearray-und-base64" class="slide level1">
+<h1>QByteArray und Base64</h1>
+<p>QByteArray ist auch die richtige Klasse um zu Base64 zu konvertieren
+(toBase64) und von Base64 einzulesen (fromBase64).</p>
+<p>Der Base64 Input/Output ist ebenfalls vom Typ QByteArray
+(Designflaw?) Es gibt Base64 Encoding-Optionen
+(QByteArray::Base64Encoding, Base64UrlEncoding,
+QByteArray::OmitTrailingEquals)</p>
+</section>
+<section id="qtextstream" class="slide level1">
+<h1>QTextStream</h1>
+<p>Um Textdaten inkl. Konvertierung zu speichern und zu laden.</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QFile</span> file<span class="op">(</span><span class="st">&quot;example.txt&quot;</span><span class="op">);</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::WriteOnly</span> <span class="op">|</span> <span class="ex">QIODevice::Text</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QTextStream</span> s<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">&lt;&lt;</span> <span class="st">&quot;Hello World&quot;</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>QTextStream nicht für Binärdaten verwenden. Außerdem verwendet
+QTextStream locale-aware Zahlen- und Datumsformate. Sehr oft will man
+das nicht. In jedem Fall sollte man das Encoding mittels</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QTextStream</span> s<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>s<span class="op">.</span>setCodec<span class="op">(</span><span class="st">&quot;UTF-8&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>setzen.</p>
+</section>
+<section id="qbytearray-für-binäres-laden-und-speichern"
+class="slide level1">
+<h1>QByteArray für binäres Laden und Speichern</h1>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QByteArray</span> loadBinary<span class="op">(</span><span class="at">const</span> <span class="ex">QString</span><span class="op">&amp;</span> filePath<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QByteArray</span> data<span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QFile</span> file<span class="op">(</span>filePath<span class="op">);</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::ReadOnly</span> <span class="op">|</span> <span class="ex">QIODevice::Binary</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="cf">throw</span> MyFileException<span class="op">(</span><span class="ex">QString</span><span class="op">(</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Failed to open file for writing: %1&quot;</span><span class="op">).</span>arg<span class="op">(</span>filePath<span class="op">));</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> file<span class="op">.</span>readAll<span class="op">();</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    file<span class="op">.</span>close<span class="op">();</span> <span class="co">// aufgrund von RAII nicht notwendig</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qexception-und-custom-exceptions" class="slide level1">
+<h1>QException und Custom Exceptions</h1>
+<p>QException ist (natürlich) kein QObject, aber ähnlich zu
+Java-Exceptions.</p>
+<pre><code>class MyFileException : public QException {
+public:
+    void raise() const override { throw *this; }
+    FileIOException *clone() const override { return new FileIOException(*this); }
+    QString message;
+    FileIOException(const QString&amp; msg) : message(msg) {}
+    QString what() const { return message; }
+};</code></pre>
+</section>
+<section id="qvariant" class="slide level1">
+<h1>QVariant</h1>
+<p>QVariant erlaubt es Basistypen, Pointer, null und eigene
+QVariant-Implementierungen in einem Rückgabetyp zu implementieren. Die
+QVariant ist also ein Container/Wrapper um den eigentlichen Wert.
+Mittels Methoden wie toInt(), toPoint(), toRect() ….</p>
+<p>Ob die Konvertierung möglich ist, kann zur Laufzeit mittels
+canConvert() abgefragt werden.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span> <span class="dt">bool</span> <span class="ex">QVariant::canConvert</span><span class="op">()</span> <span class="at">const</span></span></code></pre></div>
+<p>Man kann auch eigene Typen als QVariant registrieren</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> MyStruct <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">double</span> z<span class="op">;</span> <span class="op">};</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">// global</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Q_DECLARE_METATYPE</span><span class="op">(</span>MyStruct<span class="op">)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">// in main</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qRegisterMetaType</span><span class="op">&lt;</span>MyStruct<span class="op">&gt;(</span><span class="st">&quot;MyStruct&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>Für reine Value-Types reicht das default-Verhalten aus (Rule of
+Zero-Typen).</p>
+</section>
+<section id="qvariant-konvertierungsfunktionen" class="slide level1">
+<h1>QVariant (Konvertierungsfunktionen)</h1>
+<p>Globale Definitionen für die Unterstützung von QVariant:</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> MyStruct <span class="op">{</span> <span class="dt">int</span> x<span class="op">;</span> <span class="dt">double</span> z<span class="op">;</span> <span class="op">};</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Q_DECLARE_METATYPE</span><span class="op">(</span>MyStruct<span class="op">)</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">// serialize</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="ex">QDataStream</span> <span class="op">&amp;</span><span class="kw">operator</span><span class="op">&lt;&lt;(</span><span class="ex">QDataStream</span> <span class="op">&amp;</span>out<span class="op">,</span> <span class="at">const</span> MyStruct <span class="op">&amp;</span>myStruct<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    out <span class="op">&lt;&lt;</span> myStruct<span class="op">.</span>x <span class="op">&lt;&lt;</span> myStruct<span class="op">.</span>y<span class="op">;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">// deserialize</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="ex">QDataStream</span> <span class="op">&amp;</span><span class="kw">operator</span><span class="op">&gt;&gt;(</span><span class="ex">QDataStream</span> <span class="op">&amp;</span>in<span class="op">,</span> MyStruct <span class="op">&amp;</span>myStruct<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    in <span class="op">&gt;&gt;</span> myStruct<span class="op">.</span>x <span class="op">&gt;&gt;</span> myStruct<span class="op">.</span>y<span class="op">;</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> in<span class="op">;</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qsettings" class="slide level1">
+<h1>QSettings</h1>
+<p>QSettings unterstützt mehrere Anwendungen die auf der gleichen Datei
+arbeiten nicht. Man muss FIlelocking oder separate Dateien verwenden.
+QSettings kann optional in einer Datenbank persistiert werden.</p>
+<p>QSettings verwendet QVariant::fromValue(nullptr) um nicht
+existierende Werte zu signalisieren.</p>
+</section>
+<section id="qcommandlineparser" class="slide level1">
+<h1>QCommandLineParser</h1>
+<p>Kommandozeile Parsing mit Optionen, Flags etc</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;QCoreApplication&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;QCommandLineParser&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;QDebug&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QCoreApplication</span> app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QCommandLineParser</span> parser<span class="op">;</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    parser<span class="op">.</span>setApplicationDescription<span class="op">(</span><span class="st">&quot;Example of QCommandLineParser&quot;</span><span class="op">);</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    parser<span class="op">.</span>addHelpOption<span class="op">();</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    parser<span class="op">.</span>addVersionOption<span class="op">();</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QCommandLineOption</span> showVersionOption<span class="op">(</span><span class="ex">QStringList</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;s&quot;</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;showVersion&quot;</span><span class="op">,</span> <span class="ex">QCoreApplication::translate</span><span class="op">(</span><span class="st">&quot;main&quot;</span><span class="op">,</span> <span class="st">&quot;Show version information&quot;</span><span class="op">));</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    parser<span class="op">.</span>addOption<span class="op">(</span>showVersionOption<span class="op">);</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    parser<span class="op">.</span>process<span class="op">(</span>app<span class="op">);</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>parser<span class="op">.</span>isSet<span class="op">(</span>showVersionOption<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;Version 1.0.0&quot;</span><span class="op">;</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;No options set.&quot;</span><span class="op">;</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> app<span class="op">.</span>exec<span class="op">();</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qt-misc" class="slide level1">
+<h1>Qt Misc</h1>
+<ul>
+<li>QRegularExpression</li>
+<li>QtConcurrent</li>
+<li>QtNetwork</li>
+<li>QtOpenGL</li>
+<li>QtPng, QtJpeg</li>
+<li>QtSvg</li>
+<li>QtSql</li>
+<li>QtXml</li>
+<li>QSettings</li>
+</ul>
+</section>
+<section id="qregularexpression" class="slide level1">
+<h1>QRegularExpression</h1>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;QRegularExpression&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* finds URLs in einem Test (ungenau) */</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> findUrls<span class="op">(</span><span class="at">const</span> <span class="ex">QString</span> <span class="op">&amp;</span>text<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QRegularExpression</span> re<span class="op">(</span><span class="st">&quot;(https?://</span><span class="sc">\\</span><span class="st">S+)&quot;</span><span class="op">);</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">auto</span> it <span class="op">=</span> re<span class="op">.</span>globalMatch<span class="op">(</span>text<span class="op">);</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>it<span class="op">.</span>hasNext<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="ex">QRegularExpressionMatch</span> match <span class="op">=</span> it<span class="op">.</span>next<span class="op">();</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qInfo</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;Found URL:&quot;</span> <span class="op">&lt;&lt;</span> match<span class="op">.</span>captured<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QString</span> text <span class="op">=</span> <span class="st">&quot;Visit https://www.qt.io or &quot;</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;https://www.google.de for more information.&quot;</span><span class="op">;</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    findUrls<span class="op">(</span>text<span class="op">);</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qsettings-1" class="slide level1">
+<h1>QSettings</h1>
+<p>Mittels QSettings kann man folgende Einstellungsdateien
+verarbeiten:</p>
+<ol type="1">
+<li><strong>QSettings::IniFormat</strong> für .ini Files</li>
+<li><strong>QSettings::NativeFormat</strong> für Registry / .pfiles /
+.txt</li>
+</ol>
+<p>Desweiteren kann man noch zwischen 32bit und 64bit Registry Formaten
+wählen</p>
+</section>
+<section id="container-klassen" class="slide level1">
+<h1>Container Klassen</h1>
+<ol type="1">
+<li><p><strong>Collections</strong> QVector, QSet, QVarLengthArray und
+QList</p></li>
+<li><p><strong>QBitArray</strong> Bitset</p></li>
+<li><p><strong>Maps/Dictionaries</strong> QMap, QHash, QMultiMap,
+QMultiHash</p></li>
+</ol>
+</section>
+<section id="pointers" class="slide level1">
+<h1>Pointers</h1>
+<ul>
+<li><p>QPointer (Guarded Pointer, wird intern “null” wenn das QObject
+gelöscht wird)</p></li>
+<li><p>QSharedPointer, QWeakPointer</p></li>
+</ul>
+<p>QWeakPointer hat toStringRef() und ist somit auch ein
+GuardedPointer</p>
+</section>
+<section id="qsharedpointer" class="slide level1">
+<h1>QSharedPointer</h1>
+<pre><code>class TestObject {
+public:
+    TestObject() {
+        qDebug() &lt;&lt; &quot;TestObject()&quot;;
+    }
+
+    ~TestObject() {
+        qDebug() &lt;&lt; &quot;~TestObject()&quot;;
+    }
+
+    void sayHello() const {
+        qDebug() &lt;&lt; &quot;Hello from TestObject&quot;;
+    }
+};
+
+QSharedPointer&lt;TestObject&gt; ptr1(new TestObject());
+ptr1-&gt;sayHello();</code></pre>
+</section>
+<section id="qmap" class="slide level1">
+<h1>QMap</h1>
+<pre><code>QStringList words = { &quot;one&quot;, &quot;two&quot;, &quot;one&quot;,
+  &quot;one&quot;, &quot;two&quot;, &quot;three&quot; };
+QMap&lt;QString, int&gt; wordCount;
+for (const QString &amp;word : words) {
+    QString lowerWord = word.toLower();
+    wordCount[lowerWord]++;
+}
+QMapIterator&lt;QString, int&gt; i(wordCount);
+while (i.hasNext()) {
+  i.next();
+  qInfo() &lt;&lt; i.key() &lt;&lt; &quot;: &quot; &lt;&lt; i.value();
+}</code></pre>
+</section>
+<section id="qlist-and-qt-algorithms" class="slide level1">
+<h1>QList and Qt Algorithms</h1>
+<p>QList ist keine Linked-List und ist als Array von Pointern
+implementiert. In der Regel möchte man QVector or std::vector benutzen.
+QList hat eine weitere Ebene der Indirektion.</p>
+<p>ttps://doc.qt.io/qt-6/qtalgorithms.html</p>
+</section>
+<section id="entwickeln-sie-ihre-erste-qt-anwendung"
+class="slide level1">
+<h1>Entwickeln Sie Ihre erste Qt-Anwendung</h1>
+<p>PDF Viewer und der Möglickeit PDFs auswählen und anzeigen</p>
+<ol type="1">
+<li>Gui Gerüst</li>
+<li>TextWidget + PDFWidget</li>
+<li>Splitter + Resizing</li>
+<li>Dateien laden</li>
+<li>Widgets finden und ansprechen</li>
+</ol>
+</section>
+<section id="qobjects-und-signals-slots" class="slide level1">
+<h1>QObjects und Signals &amp; Slots</h1>
+<ul>
+<li>QObject</li>
+<li>Speicherverwaltung</li>
+<li>Reentrant (keine gemeinsamen Globals)</li>
+<li>vs. Threadsafe (kein eigenens Locking notwending)</li>
+</ul>
+</section>
+<section id="qobject-properties-teil-1" class="slide level1">
+<h1>QObject Properties, Teil 1</h1>
+<p>Definition einer Property “age” in QT mittels Makro</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass <span class="op">:</span> <span class="kw">public</span> <span class="ex">QObject</span> <span class="op">{</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Q_OBJECT</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Q_PROPERTY</span><span class="op">(</span><span class="dt">int</span> age READ getAge WRITE setAge NOTIFY ageChanged<span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>Eigenschaftsname:</strong> Eindeutiger Name für die
+Eigenschaft.<br />
+</li>
+<li><strong>Lese-Methode:</strong> Methode, um den Wert der Eigenschaft
+abzurufen.<br />
+</li>
+<li><strong>Schreib-Methode:</strong> Methode, um den Wert der
+Eigenschaft zu setzen.<br />
+</li>
+<li><strong>Benachrichtigungs-Signal:</strong> Ein Signal, das ausgelöst
+wird, wenn sich der Wert der Eigenschaft ändert.<br />
+</li>
+</ul>
+<p>Properties können generisch gesetzt werden.</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>myObject<span class="op">-&gt;</span>setProperty<span class="op">(</span><span class="st">&quot;volume&quot;</span><span class="op">,</span> <span class="ex">QVariant</span><span class="op">(</span><span class="dv">200</span><span class="op">));</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QVariant</span> value <span class="op">=</span> myObject<span class="op">-&gt;</span>property<span class="op">(</span><span class="st">&quot;volume&quot;</span><span class="op">);</span></span></code></pre></div>
+</section>
+<section id="qobject-properties-teil-2" class="slide level1">
+<h1>QObject Properties, Teil 2</h1>
+<ul>
+<li><strong>Automatisches Binding</strong></li>
+<li><strong>Benachrichtigungsmechanismus</strong></li>
+<li><strong>Integration mit dem Qt Designer</strong> QProperties können
+direkt im Qt Designer visualisiert und bearbeitet werden, wodurch die
+Entwicklung von Benutzeroberflächen erleichtert wird. Letzteres via
+Introspection:</li>
+</ul>
+<pre><code>QMetaProperty = myObject-&gt;metaObject()-&gt;property(2)</code></pre>
+</section>
+<section id="qobject-properties-teil-3" class="slide level1">
+<h1>QObject Properties, Teil 3</h1>
+<p>Mittels des metaObject() kann man auf die Methoden und Properties
+eines Objekts zur Laufzeit zugreifen. Properties können generisch via
+QVariant modifiziert werden. Das funktioniert mittels Property-Name oder
+Property-Index.</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QMetaObject</span> <span class="op">*</span>metaObject <span class="op">=</span> myObject<span class="op">-&gt;</span>metaObject<span class="op">();</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> propertyIndex <span class="op">=</span> metaObject<span class="op">-&gt;</span>indexOfProperty<span class="op">(</span><span class="st">&quot;age&quot;</span><span class="op">);</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>propertyIndex <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QMetaProperty</span> property <span class="op">=</span> metaObject<span class="op">-&gt;</span>property<span class="op">(</span>propertyIndex<span class="op">);</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    property<span class="op">.</span>write<span class="op">(</span>myObject<span class="op">,</span> <span class="dv">200</span><span class="op">);</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qpointer-qscopedpointer-qsharedpointer-qweakpointer"
+class="slide level1">
+<h1>QPointer, QScopedPointer, QSharedPointer, QWeakPointer</h1>
+<p>Diese “Smart”-Pointer vermeiden Memory-Leaks oder Double-Deletes. In
+der Regel ist die Benutzung von QSharedPointer zu bevorzugen. Dagegen
+sprechen höchstens Performance-Gründe oder das die Notwendigkeit von
+Smart-Pointern im konkreten Fall nicht gegeben ist.</p>
+</section>
+<section id="qpointer" class="slide level1">
+<h1>QPointer</h1>
+<p>QPointer ist ein “guarded pointer” und wird automatisch auf nullptr
+gesetzt, wenn das QObject gelöscht wird.</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QObject</span> <span class="op">*</span>obj <span class="op">=</span> <span class="kw">new</span> <span class="ex">QObject</span><span class="op">();</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;</span> ptr <span class="op">=</span> obj<span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">delete</span> obj<span class="op">;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>ptr<span class="op">.</span>isNull<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;Object was deleted&quot;</span><span class="op">;</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qscopedpointer" class="slide level1">
+<h1>QScopedPointer</h1>
+<p>QScopedPointer ist ein “unique pointer” und wird automatisch
+gelöscht, wenn der Scope verlassen wird.</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QScopedPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;</span> ptr<span class="op">(</span><span class="kw">new</span> <span class="ex">QObject</span><span class="op">());</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    ptr<span class="op">-&gt;</span>setObjectName<span class="op">(</span><span class="st">&quot;MyObject&quot;</span><span class="op">);</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="co">// ptr ruft an dieser Stelle automatisch delete auf das enthaltene Objekt auf</span></span></code></pre></div>
+</section>
+<section id="qsharedpointer-1" class="slide level1">
+<h1>QSharedPointer</h1>
+<p>QSharedPointer ist ein “shared pointer” und wird automatisch
+gelöscht, wenn der letzte shared pointer auf das Objekt gelöscht
+wird.</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QSharedPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;</span> ptr1<span class="op">(</span><span class="kw">new</span> <span class="ex">QObject</span><span class="op">());</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">QSharedPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;</span> ptr2 <span class="op">=</span> ptr1<span class="op">;</span> <span class="co">//     refcount = 2</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">QVector</span><span class="op">&lt;</span><span class="ex">QSharedPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;&gt;</span> vec<span class="op">;</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        vec<span class="op">.</span>append<span class="op">(</span>ptr1<span class="op">);</span> <span class="co">// refcount = 3</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        vec<span class="op">.</span>append<span class="op">(</span>ptr2<span class="op">);</span> <span class="co">// refcount = 4</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="co">// refcount = 1</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="co">// refcount = 0, Objekt wird gelöscht</span></span></code></pre></div>
+</section>
+<section id="qweakpointer" class="slide level1">
+<h1>QWeakPointer</h1>
+<p>QWeakPointer ist ein “weak pointer” und wird automatisch auf nullptr
+gesetzt, wenn das QObject gelöscht wird. Das ist die sichere Variante
+von QPointer.</p>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QSharedPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;</span> ptr<span class="op">(</span><span class="kw">new</span> <span class="ex">QObject</span><span class="op">());</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QWeakPointer</span><span class="op">&lt;</span><span class="ex">QObject</span><span class="op">&gt;</span> weakPtr <span class="op">=</span> ptr<span class="op">;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    ptr<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>weakPtr<span class="op">.</span>isNull<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;Object was deleted&quot;</span><span class="op">;</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="io-networking" class="slide level1">
+<h1>IO + Networking</h1>
+<h2 id="streams-und-files">Streams und Files</h2>
+<ul>
+<li>QFile</li>
+<li>QTextStream</li>
+<li>QDataStream</li>
+</ul>
+</section>
+<section id="qfile" class="slide level1">
+<h1>QFile</h1>
+<p>QFile hat RAII und ist ein Wrapper um die C-File-Operationen. QFile
+ist auch ein QIODevice und kann somit auch für Netzwerkoperationen
+verwendet werden.</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QFile</span> file<span class="op">(</span><span class="st">&quot;example.txt&quot;</span><span class="op">);</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::WriteOnly</span> <span class="op">|</span> <span class="ex">QIODevice::Text</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>        <span class="ex">QTextStream</span> out<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>        out <span class="op">&lt;&lt;</span> <span class="st">&quot;Hello World&quot;</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* close() wird automatisch aufgerufen */</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qfile-und-encodings" class="slide level1">
+<h1>QFile und Encodings</h1>
+<p>Welches Encoding wird verwendet? QFile verwendet das Betriebssystem
+Encoding wenn kein implicites Encoding gesetzt ist. Das wird zu
+Problemen führen.</p>
+<p>Also das Encoding bitte setzen. Erraten ist schwierig.</p>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QTextStream</span> stream<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>stream<span class="op">.</span>setCodec<span class="op">(</span><span class="st">&quot;UTF-8&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>BOM (Byte Order Mark) wird von Qt automatisch erkannt und
+verwendet.</p>
+</section>
+<section id="qfile-und-qdatastream" class="slide level1">
+<h1>QFile und QDataStream</h1>
+<p>QDataStream ist ein Binär-Stream und kann auch für die Serialisierung
+von Objekten verwendet werden.</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QFile</span> file<span class="op">(</span><span class="st">&quot;example.dat&quot;</span><span class="op">);</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::WriteOnly</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QDataStream</span> out<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">&lt;&lt;</span> <span class="ex">QString</span><span class="op">(</span><span class="st">&quot;Hello, World!&quot;</span><span class="op">);</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qfile-und-qdatastream-serialisierung" class="slide level1">
+<h1>QFile und QDataStream, Serialisierung</h1>
+<p>Serialisierung von Objekten:</p>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QFile</span> file<span class="op">(</span><span class="st">&quot;example.dat&quot;</span><span class="op">);</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::WriteOnly</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QDataStream</span> out<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    out <span class="op">&lt;&lt;</span> <span class="ex">QString</span><span class="op">(</span><span class="st">&quot;Hello, World!&quot;</span><span class="op">);</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    out <span class="op">&lt;&lt;</span> <span class="dv">42</span><span class="op">;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    out <span class="op">&lt;&lt;</span> <span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="pp"># </span><span class="er">QFile und QDataStream, Teil 2</span></span></code></pre></div>
+<p>Anschließendes Deserialisieren:</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QFile</span> file<span class="op">(</span><span class="st">&quot;example.dat&quot;</span><span class="op">);</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::ReadOnly</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QDataStream</span> in<span class="op">(&amp;</span>file<span class="op">);</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QString</span> str<span class="op">;</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    in <span class="op">&gt;&gt;</span> str <span class="op">&gt;&gt;</span> i <span class="op">&gt;&gt;</span> d<span class="op">;</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qfile-und-qbytearray" class="slide level1">
+<h1>QFile und QByteArray</h1>
+<p>Bytearrays können auch direkt in Dateien geschrieben werden.</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QByteArray</span> data <span class="op">=</span> <span class="ex">QByteArray::fromHex</span><span class="op">(</span><span class="st">&quot;deadbeef&quot;</span><span class="op">);</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QFile</span> file<span class="op">(</span><span class="st">&quot;example.dat&quot;</span><span class="op">);</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>file<span class="op">.</span>open<span class="op">(</span><span class="ex">QIODevice::WriteOnly</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    file<span class="op">.</span>write<span class="op">(</span>data<span class="op">);</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="qfile-qbytearray-und-qjsondocument" class="slide level1">
+<h1>QFile, QByteArray und QJsonDocument</h1>
+<p>QByteArray kann Json Daten aufnehmen. JsonDocument::Compact oder
+JsonDocument::Indented kann verwendet werden. Ersteres spart Platz.</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> writeJsonToFile<span class="op">(</span><span class="at">const</span> <span class="ex">QJsonObject</span> <span class="op">&amp;</span>jsonObj<span class="op">,</span> <span class="at">const</span> <span class="ex">QString</span> <span class="op">&amp;</span>fileName<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QFile</span> file<span class="op">(</span>fileName<span class="op">);</span> <span class="co">// keine fehlerbehandlung hier.</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QJsonDocument</span> jsonDoc<span class="op">(</span>jsonObj<span class="op">);</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QByteArray</span> jsonData <span class="op">=</span> jsonDoc<span class="op">.</span>toJson<span class="op">(</span><span class="ex">QJsonDocument::Indented</span><span class="op">);</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    file<span class="op">.</span>write<span class="op">(</span>jsonData<span class="op">);</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="pp"># </span><span class="er">Serialisierung und Deserialisierung und QJsonDocument</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>Um eigene C<span class="op">++-</span>Klassen im Json<span class="op">-</span>Format zu speichern oder zu laden muss man wie folgt</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>MANUELL vorgehen<span class="op">:</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="er">```</span>cpp</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass <span class="op">{</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QString</span> name<span class="op">;</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age<span class="op">;</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QJsonObject</span> toJson<span class="op">()</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>        <span class="ex">QJsonObject</span> obj<span class="op">;</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>        obj<span class="op">[</span><span class="st">&quot;name&quot;</span><span class="op">]</span> <span class="op">=</span> name<span class="op">;</span></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>        obj<span class="op">[</span><span class="st">&quot;age&quot;</span><span class="op">]</span> <span class="op">=</span> age<span class="op">;</span></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> obj<span class="op">;</span></span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> fromJson<span class="op">(</span><span class="at">const</span> <span class="ex">QJsonObject</span> <span class="op">&amp;</span>obj<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>        name <span class="op">=</span> obj<span class="op">[</span><span class="st">&quot;name&quot;</span><span class="op">].</span>toString<span class="op">();</span></span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>        age <span class="op">=</span> obj<span class="op">[</span><span class="st">&quot;age&quot;</span><span class="op">].</span>toInt<span class="op">();</span></span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+</section>
+<section id="network-accesss-ist-asynchron" class="slide level1">
+<h1>Network-Accesss ist asynchron</h1>
+<ul>
+<li>NetworkAccessManager</li>
+<li>Alternative: Libraries in eigenen QThreads verwenden (libcurl)</li>
+<li>Alternative mit bon-blocking IO: boost::asio</li>
+</ul>
+</section>
+<section id="gui" class="slide level1">
+<h1>GUI</h1>
+<ul>
+<li>GUIs / Interfaces sind die Stärke von QT.</li>
+<li>Qt Designer ist ein WYSIWYG-Editor.</li>
+<li>Qt Quick ist eine Alternative zu Widgets.</li>
+<li>Qt wurde für die Entwicklung von GUIs entworfen.</li>
+</ul>
+</section>
+<section id="die-zentralen-konzepte-sind" class="slide level1">
+<h1>Die zentralen Konzepte sind</h1>
+<ul>
+<li><strong>Widgets (QWidget)</strong></li>
+<li><strong>Basic Widgets</strong></li>
+<li><strong>Layouts</strong></li>
+<li><strong>Stacked-Widget / TabWidget</strong></li>
+<li><strong>Tables and Treeviews</strong></li>
+</ul>
+</section>
+<section id="qwidget" class="slide level1">
+<h1>QWidget</h1>
+<h2 id="was-ist-ein-qwidget">Was ist ein QWidget?</h2>
+<ul>
+<li>Grundlegende Klasse für alle UI-Objekte in Qt.</li>
+<li>Kann als Fenster oder ein Steuerelement innerhalb eines Fensters
+verwendet werden.</li>
+<li>ist von QObject abgeleitet</li>
+</ul>
+<h2 id="hauptmerkmale">Hauptmerkmale</h2>
+<ol type="1">
+<li><strong>Ereignisverarbeitung</strong>: Bearbeitet UI-bezogene
+Ereignisse wie Mausklicks, Tastendrücke usw.</li>
+<li><strong>Geometrie-Management</strong>: Festlegen und Abrufen von
+Größe, Position und anderen geometrischen Eigenschaften.</li>
+<li><strong>Layout-System</strong>: Ermöglicht das organisierte Anordnen
+von UI-Elementen innerhalb eines Widgets.</li>
+<li><strong>Owner-Draw</strong>: Möglichkeit selber zu Zeichnen.</li>
+</ol>
+<h2 id="qwidget-und-children">QWidget und Children</h2>
+<p>Ein QWidget hat children und ein QWidget hat in der Regel auch einen
+Parent. Der Parent kann aber via mywidget-&gt;setParent(nullptr)
+entfernt werden. Parent-Widgets renderen ihre Kinderwidgets und
+de’allokieren diese auch.</p>
+</section>
+<section id="qwidget-features" class="slide level1">
+<h1>QWidget Features</h1>
+<ul>
+<li>findChild() und findChildren()</li>
+<li>childAt(Qpoint pos) findet das Top-Level Kind an der Position
+pos.</li>
+<li>z-index mittels stackUnder(QWidget *w), raise() und lower()
+steuerbar.</li>
+<li>Zugriff auf QScreen* screen() und QWindow* window()y</li>
+<li>Scrolling wird direkt von QWidget unterstützt, aber QScrollArea ist
+die bessere Alternative.</li>
+<li>Enablement, Transparenz, Double-Buffering und Compositing</li>
+</ul>
+</section>
+<section id="die-eventloop" class="slide level1">
+<h1>Die Eventloop</h1>
+</section>
+<section id="was-ist-die-qt-event-loop" class="slide level1">
+<h1>Was ist die Qt Event Loop?</h1>
+<p>Die Event Loop ist ein Kernmechanismus des Qt-Frameworks, der für das
+Abfragen und das Verarbeiten von Ereignissen und das Weiterleiten dieser
+an die zuständigen Objekte verantwortlich ist.</p>
+</section>
+<section id="event-loop-kernkomponenten" class="slide level1">
+<h1>Event Loop Kernkomponenten</h1>
+<ul>
+<li><strong>Ereignisse (Events):</strong> Aktionen, die wie Mausklicks
+oder Tastendrücke als Reaktion auf Benutzerinteraktionen auftreten
+können.</li>
+<li><strong>Event Queue:</strong> Eine Warteschlange, in der Ereignisse
+auf ihre Verarbeitung warten.</li>
+<li><strong>Event Loop:</strong> Ein kontinuierlicher Zyklus, der
+Ereignisse aus der Queue entnimmt und sie behandelt.</li>
+</ul>
+<h2 id="funktion">Funktion</h2>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QApplication</span> app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> app<span class="op">.</span>exec<span class="op">();</span> <span class="co">// Startet die Event Loop</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="eventloop-verwendung" class="slide level1">
+<h1>Eventloop Verwendung</h1>
+<h2 id="verwendung">Verwendung</h2>
+<ul>
+<li>Benutzerdefinierte Ereignisse: Können erstellt und in die Queue
+eingefügt werden.</li>
+<li>Timer-Ereignisse: Werden für periodische Aktionen genutzt oder um
+einmalig später auszuführen.</li>
+<li>Überschreiben von Event-Handlern: Ermöglicht benutzerdefinierte
+Reaktionen auf Ereignisse.</li>
+</ul>
+</section>
+<section id="layouts-und-stile" class="slide level1">
+<h1>Layouts und Stile</h1>
+<ul>
+<li>HBox und VBox</li>
+<li>GridLayout</li>
+<li>FormLayout</li>
+<li>Splitters</li>
+</ul>
+</section>
+<section id="widget-größe" class="slide level1">
+<h1>Widget Größe</h1>
+<ul>
+<li>QWidget Properties: pos und size</li>
+<li>QWidget::sizePolicy() legt Verhalten in Layouts fest</li>
+<li>QWidget::setFixedSize() und QWidget::setMinimumSize() und
+QWidget::setMaximumSize()</li>
+</ul>
+</section>
+<section id="qvboxlayout" class="slide level1">
+<h1>QVBoxLayout</h1>
+<ul>
+<li>Eine der häufigsten Layout-Klassen in Qt.</li>
+<li>Stapelt Widgets vertikal.</li>
+<li>Einfach zu verwenden und flexibel.</li>
+</ul>
+</section>
+<section id="qvboxlayout---anwendung" class="slide level1">
+<h1>QVBoxLayout - Anwendung</h1>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QWidget</span> <span class="op">*</span>container <span class="op">=</span> <span class="kw">new</span> <span class="ex">QWidget</span><span class="op">();</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QVBoxLayout</span> <span class="op">*</span>layout <span class="op">=</span> <span class="kw">new</span> <span class="ex">QVBoxLayout</span><span class="op">();</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;Oben&quot;</span><span class="op">));</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;Mitte&quot;</span><span class="op">));</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;Unten&quot;</span><span class="op">));</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>setLayout<span class="op">(</span>layout<span class="op">);</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>show<span class="op">();</span></span></code></pre></div>
+</section>
+<section id="qhboxlayout---anwendung" class="slide level1">
+<h1>QHBoxLayout - Anwendung</h1>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QWidget</span> <span class="op">*</span>container <span class="op">=</span> <span class="kw">new</span> <span class="ex">QWidget</span><span class="op">();</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QHBoxLayout</span> <span class="op">*</span>layout <span class="op">=</span> <span class="kw">new</span> <span class="ex">QHBoxLayout</span><span class="op">();</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;Links&quot;</span><span class="op">));</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;Mitte&quot;</span><span class="op">));</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;Rechts&quot;</span><span class="op">));</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>setLayout<span class="op">(</span>layout<span class="op">);</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>show<span class="op">();</span></span></code></pre></div>
+</section>
+<section id="qsplitter" class="slide level1">
+<h1>QSplitter</h1>
+<ul>
+<li>Ermöglicht das dynamische Anpassen von Widget-Größen.</li>
+<li>Ideal, um UI-Elementen variable Raumverteilung zu ermöglichen.</li>
+<li>Kann sowohl horizontal als auch vertikal verwendet werden.</li>
+</ul>
+</section>
+<section id="qsplitter---anwendung" class="slide level1">
+<h1>QSplitter - Anwendung</h1>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QSplitter</span> <span class="op">*</span>splitter <span class="op">=</span> <span class="kw">new</span> <span class="ex">QSplitter</span><span class="op">(</span><span class="ex">Qt::Horizontal</span><span class="op">);</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>splitter<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QTextEdit</span><span class="op">());</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>splitter<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QListView</span><span class="op">());</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>splitter<span class="op">-&gt;</span>show<span class="op">();</span></span></code></pre></div>
+</section>
+<section id="qformlayout" class="slide level1">
+<h1>QFormLayout</h1>
+<ul>
+<li>Für formularartige Widgets.</li>
+<li>Pairs aus Labels und Feld-Widgets.</li>
+<li>Automatisches Anordnen von Widgets.</li>
+</ul>
+</section>
+<section id="qformlayout---anwendung" class="slide level1">
+<h1>QFormLayout - Anwendung</h1>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QFormLayout</span> <span class="op">*</span>layout <span class="op">=</span> <span class="kw">new</span> <span class="ex">QFormLayout</span><span class="op">();</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addRow<span class="op">(</span><span class="st">&quot;Name:&quot;</span><span class="op">,</span> <span class="kw">new</span> <span class="ex">QLineEdit</span><span class="op">());</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addRow<span class="op">(</span><span class="st">&quot;Alter:&quot;</span><span class="op">,</span> <span class="kw">new</span> <span class="ex">QSpinBox</span><span class="op">());</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="ex">QWidget</span> <span class="op">*</span>container <span class="op">=</span> <span class="kw">new</span> <span class="ex">QWidget</span><span class="op">();</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>setLayout<span class="op">(</span>layout<span class="op">);</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>show<span class="op">();</span></span></code></pre></div>
+</section>
+<section id="qgridlayout" class="slide level1">
+<h1>QGridLayout</h1>
+<ul>
+<li>Widgets werden in einem Raster angeordnet.</li>
+<li>Maximale Flexibilität für die Anordnung.</li>
+<li>Definiert durch Zeilen und Spalten.</li>
+</ul>
+</section>
+<section id="qgridlayout---anwendung" class="slide level1">
+<h1>QGridLayout - Anwendung</h1>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QGridLayout</span> <span class="op">*</span>layout <span class="op">=</span> <span class="kw">new</span> <span class="ex">QGridLayout</span><span class="op">();</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;1&quot;</span><span class="op">),</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;2&quot;</span><span class="op">),</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;3&quot;</span><span class="op">),</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>layout<span class="op">-&gt;</span>addWidget<span class="op">(</span><span class="kw">new</span> <span class="ex">QPushButton</span><span class="op">(</span><span class="st">&quot;4&quot;</span><span class="op">),</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="ex">QWidget</span> <span class="op">*</span>container <span class="op">=</span> <span class="kw">new</span> <span class="ex">QWidget</span><span class="op">();</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>setLayout<span class="op">(</span>layout<span class="op">);</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>container<span class="op">-&gt;</span>show<span class="op">();</span></span></code></pre></div>
+</section>
+<section id="widgetentwicklung" class="slide level1">
+<h1>Widgetentwicklung</h1>
+<ul>
+<li>Eigene Widgets erstellen</li>
+<li>Eigenes Zeichnen</li>
+<li>In den Creator einbinden</li>
+</ul>
+</section>
+<section id="fortgeschrittene-qt-themen" class="slide level1">
+<h1>Fortgeschrittene Qt-Themen</h1>
+<ul>
+<li><strong>Verwendung von Datenbanken mit Qt</strong></li>
+<li><strong>Verbindungen zu externen APIs</strong></li>
+<li><strong>Erweiterung von Qt mit Plugins</strong></li>
+<li><strong>Benutzeroberflächen- und Interaktionsdesign</strong></li>
+</ul>
+</section>
+<section id="verwendung-von-datenbanken-mit-qt" class="slide level1">
+<h1>Verwendung von Datenbanken mit Qt</h1>
+<p>QSql ist eine vollständige SQL-API.</p>
+</section>
+<section id="datenbanken-teil-1" class="slide level1">
+<h1>Datenbanken Teil 1</h1>
+<p>Synopsis Selects:</p>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> sql <span class="op">=</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;select email, name from users where email like ?&quot;</span><span class="op">;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QSqlQuery</span> query<span class="op">;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    query<span class="op">.</span>prepare<span class="op">(</span>sql<span class="op">);</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    query<span class="op">.</span>bindValue<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="ex">QVariant</span><span class="op">(</span><span class="st">&quot;%hans%&quot;</span><span class="op">));</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>query<span class="op">.</span>exec<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>query<span class="op">.</span>next<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>            <span class="kw">auto</span> email <span class="op">=</span> query<span class="op">.</span>value<span class="op">(</span><span class="st">&quot;email&quot;</span><span class="op">).</span>toString<span class="op">();</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>            <span class="kw">auto</span> name <span class="op">=</span> query<span class="op">.</span>value<span class="op">(</span><span class="st">&quot;name&quot;</span><span class="op">).</span>toString<span class="op">();</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>            <span class="co">// ....</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> query<span class="op">.</span>lastError<span class="op">().</span>text<span class="op">();</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="datenbanken-teil-2" class="slide level1">
+<h1>Datenbanken Teil 2</h1>
+<p>Synopsis Updates:</p>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QString</span> sql <span class="op">=</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;insert into users(email,name) values (:email, :name)&quot;</span><span class="op">;</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">QSqlQuery</span> query<span class="op">;</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    query<span class="op">.</span>prepare<span class="op">(</span>sql<span class="op">);</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    query<span class="op">.</span>bindValue<span class="op">(</span><span class="st">&quot;:email&quot;</span><span class="op">,</span> </span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;willi.millowitsch@cologne.de&quot;</span><span class="op">);</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    query<span class="op">.</span>bindValue<span class="op">(</span><span class="st">&quot;:name&quot;</span><span class="op">,</span> <span class="st">&quot;Willi Millowitsch&quot;</span><span class="op">);</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>query<span class="op">.</span>exec<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qInfo</span><span class="op">().</span>nospace<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot;inserted #&quot;</span> </span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>            <span class="op">&lt;&lt;</span> query<span class="op">.</span>numRowsAffected<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="st">&quot; row(s)&quot;</span><span class="op">;</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">qDebug</span><span class="op">()</span> <span class="op">&lt;&lt;</span> query<span class="op">.</span>lastError<span class="op">().</span>text<span class="op">();</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="datenbanken-teil-3" class="slide level1">
+<h1>Datenbanken Teil 3</h1>
+<p>Anzeige mittels <strong>QSqlQueryModel</strong></p>
+<pre><code>// Header
+class ResultsView : public QTableView
+{
+    // ...
+    void showQuery(QSqlQuery &amp;&amp;query);
+    // ...
+};
+
+// Impl
+void ResultsView::showQuery(QSqlQuery &amp;&amp;query) {
+    QSqlQueryModel *model = 
+       dynamic_cast&lt;QSqlQueryModel*&gt;(this-&gt;model());
+    model-&gt;setQuery(std::move(query));
+}</code></pre>
+</section>
+<section id="verbindungen-zu-externen-apis" class="slide level1">
+<h1>Verbindungen zu externen APIs</h1>
+<p>Achtung: Immer Async</p>
+<ul>
+<li>Mittels QNetworkManager</li>
+<li>Mittels libcurl</li>
+<li>CPR/C++Requests <a href="https://github.com/libcpr/cpr"></a></li>
+<li>cpp-httplib <a
+href="https://github.com/yhirose/cpp-httplib"></a></li>
+</ul>
+</section>
+<section id="erweiterung-von-qt-mit-plugins" class="slide level1">
+<h1>Erweiterung von Qt mit Plugins</h1>
+<ul>
+<li><p>QtCreator kann Plugins aufnehmen (nicht nur Widgets)</p></li>
+<li><p>QtCreator kann Customwidgets im Designer anzeigen und
+verwenden</p></li>
+<li><p>Man kann seine eigenen Widgets QtCreator-Ready machen <a
+href="https://doc.qt.io/qt-6/designer-creating-custom-widgets.html"></a></p></li>
+<li><p>Fallback: Ist promoteTo, dann gibt ea aber keine Properties und
+kein Preview</p></li>
+</ul>
+</section>
+<section id="benutzeroberflächen--und-interaktionsdesign"
+class="slide level1">
+<h1>Benutzeroberflächen- und Interaktionsdesign</h1>
+<ul>
+<li><p>Qt unterstützt die Themes des nativen Betriebssystem</p></li>
+<li><p>Qt unterstützt Stylesheets auf Widgetbasis</p></li>
+<li><p>Qt Creator selber kann ergo auch “Themed” werden <a
+href="https://github.com/ihonen/qt-creator-themes"></a></p></li>
+<li><p>Browser können in QtWidgets embedded werden.</p></li>
+</ul>
+</section>
+<section id="veröffentlichung-ihrer-qt-anwendung" class="slide level1">
+<h1>Veröffentlichung Ihrer Qt-Anwendung</h1>
+</section>
+<section id="übersicht-schritte-zur-auslieferung" class="slide level1">
+<h1>Übersicht: Schritte zur Auslieferung</h1>
+<ol type="1">
+<li><strong>Build Prozess</strong>
+<ul>
+<li>Release-Konfiguration erstellen</li>
+<li>Abhängigkeiten verwalten</li>
+</ul></li>
+<li><strong>Erstellung des Installers</strong>
+<ul>
+<li>Qt Installer Framework nutzen</li>
+<li>Installationsroutinen definieren</li>
+</ul></li>
+<li><strong>Testen des Installers</strong>
+<ul>
+<li>Installationsprozess überprüfen</li>
+<li>Funktionsprüfung nach der Installation</li>
+</ul></li>
+<li><strong>Distribution</strong>
+<ul>
+<li>Auswahl der Plattform(en)</li>
+<li>Bereitstellungsmöglichkeiten</li>
+</ul></li>
+</ol>
+</section>
+<section id="build-prozess" class="slide level1">
+<h1>Build Prozess</h1>
+<ul>
+<li><strong>Release Konfiguration</strong>: <code>qmake</code> mit
+<code>CONFIG+=release</code> verwenden.</li>
+<li><strong>Statische vs. Dynamische Links</strong>: Statische Builds
+beinhalten alle notwendigen Bibliotheken.</li>
+<li><strong>Verwendung von windeployqt</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ex">windeployqt</span> <span class="at">--release</span> <span class="at">--no-translations</span> <span class="op">&lt;</span>Pfad-zum-App-Verzeichnis<span class="op">&gt;</span></span></code></pre></div>
+</section>
+<section id="erstellen-sie-ein-installationsprogramm"
+class="slide level1">
+<h1>Erstellen Sie ein Installationsprogramm</h1>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">binarycreator</span> <span class="at">--config</span> config.xml <span class="at">--packages</span> <span class="op">&lt;</span>Pfad-zu-Paketen<span class="op">&gt;</span> installer.exe</span></code></pre></div>
+</section>
+<section id="zusammenfassung-und-fragen" class="slide level1">
+<h1>Zusammenfassung und Fragen</h1>
+<p>Um Qt zu lernen muss man folgendes beherrschen:</p>
+<ul>
+<li>C++ Grundlagen</li>
+<li>Die Qt Bibliotheken (insbesondere Core)</li>
+<li>Qt Creator</li>
+</ul>
+</section>
+<section id="zusammenfassung-der-vermittelten-inhalte"
+class="slide level1">
+<h1>Zusammenfassung der vermittelten Inhalte</h1>
+<ul>
+<li>Qt Grundlagen aus QtCore</li>
+<li>Qt Widgets</li>
+<li>Qt Sql</li>
+<li>Qt QWT</li>
+</ul>
+</section>
+<section id="beantwortung-offener-fragen" class="slide level1">
+<h1>Beantwortung offener Fragen</h1>
+<p>Any questions?</p>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
